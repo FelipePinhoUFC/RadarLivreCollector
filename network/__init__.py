@@ -6,7 +6,7 @@ log.basicConfig(level=log.DEBUG)
 import socket
 import sys
 
-from threading import Thread, RLock
+from threading import Thread
 from time import sleep
 
 
@@ -34,9 +34,6 @@ class AsyncTask(Thread):
 
 
 class AsyncServerSocket(Thread):
-    __lockListening = RLock()
-    __lockSocket = RLock()
-    __lockClients = RLock()
     __socket = None
     __host = None
     __port = None
@@ -49,9 +46,7 @@ class AsyncServerSocket(Thread):
         self.__port = port
 
     def __setListening(self, listening):
-        self.__lockListening.acquire()
         self.__listening = listening
-        self.__lockListening.release()
 
     def isListening(self):
         return self.__listening
@@ -64,12 +59,10 @@ class AsyncServerSocket(Thread):
         try:
             subprocess.call(["fuser", "-k", "%d/tcp" % self.__port])
             sleep(.1)
-            self.__lockSocket.acquire()
             self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.__socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.__socket.bind((self.__host, self.__port))
             self.__socket.listen(1)
-            self.__lockSocket.release()
 
         except Exception as err:
             log.error("Socket Server: %s" % str(err))
@@ -82,9 +75,7 @@ class AsyncServerSocket(Thread):
 
         while self.__listening:
             try:
-                self.__lockSocket.acquire()
                 task = AsyncTask(self.__handleConnection, self.__socket.accept())
-                self.__lockSocket.release()
                 task.start()
 
             except KeyboardInterrupt as err:
@@ -94,16 +85,12 @@ class AsyncServerSocket(Thread):
             except Exception as err:
                 pass
 
-        self.__lockSocket.acquire()
         self.__socket.close()
-        self.__lockSocket.release()
 
         self.onStoped()
 
     def __handleConnection(self, connetionAndClientAddress):
-        self.__lockListening.acquire()
         self.__clients[connetionAndClientAddress[1]] = connetionAndClientAddress[0]
-        self.__lockListening.release()
         conn = connetionAndClientAddress[0]
         self.onClienteConnected(connetionAndClientAddress[1])
 
@@ -136,9 +123,7 @@ class AsyncServerSocket(Thread):
                 pass
 
             conn.close()
-            self.__lockClients.acquire()
             del self.__clients[connetionAndClientAddress[1]]
-            self.__lockClients.release()
             self.onClientDisconnected(connetionAndClientAddress[1])
 
 
@@ -171,7 +156,6 @@ class AsyncServerSocket(Thread):
 
 
 class ClientSocket():
-    __lock = RLock()
     __socket = None
     __host = None
     __port = None
@@ -182,9 +166,7 @@ class ClientSocket():
         self.__port = port
 
     def __setRunning(self, running):
-        self.__lock.acquire()
         self.__running = running
-        self.__lock.release()
 
     def connect(self):
         try:
@@ -225,9 +207,7 @@ class ClientSocket():
 
     def disconnect(self):
         self.__setRunning(False)
-        self.__lock.acquire()
         self.__socket.close()
-        self.__lock.release()
 
     def onServerMessage(self, msg):
         log.info("Client Socket: message from server: %s" % msg)

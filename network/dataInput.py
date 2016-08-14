@@ -8,15 +8,19 @@ log.basicConfig(level=log.DEBUG)
 
 from network import ClientSocket
 
+def parseFloat(n):
+    try:
+        return float(n)
+    except:
+        return None
 
 class DataInput(ClientSocket):
 
     __adsbBuffer = {}
 
     def onServerMessage(self, msg):
-        log.info("DataInput: Server message %s" % str(msg))
-
         entries = msg.split("\n")
+        # log.info("DataInput: Server message %d" % len(entries))
         for entry in entries:
             entry = entry.split(",")
             if len(entry) >= 17:
@@ -24,12 +28,12 @@ class DataInput(ClientSocket):
                     collector=COLLECTOR_ID,
                     modeSCode=entry[4],
                     callsign=entry[10],
-                    latitude=entry[14],
-                    longitude=entry[15],
-                    altitude=entry[11],
-                    horizontalVelocity=entry[12],
-                    groundTrackHeading=entry[13],
-                    verticalVelocity=entry[16],
+                    latitude=parseFloat(entry[14]),
+                    longitude=parseFloat(entry[15]),
+                    altitude=parseFloat(entry[11]),
+                    horizontalVelocity=parseFloat(entry[12]),
+                    groundTrackHeading=parseFloat(entry[13]),
+                    verticalVelocity=parseFloat(entry[16]),
                     messagDataId="",
                     messagDataPositionEven="",
                     messagDataPositionOdd="",
@@ -39,22 +43,27 @@ class DataInput(ClientSocket):
                 )
 
                 info = self.__addToBuffer(info)
-                if info.icao and info.callsign and info.latitude and info.longitude:
+                if info.modeSCode and info.callsign and info.latitude and info.longitude:
+                    # log.info("DataInput: A complete info has received from server!")
                     self.onADSBInfoReceived(info)
+                    del self.__adsbBuffer[info.modeSCode]
 
     def onADSBInfoReceived(self, info):
         log.info("DataInput: New adsb Info received!")
 
     def __addToBuffer(self, info):
-        if info.icao in self.__adsbBuffer:
-            old = self.__adsbBuffer[info.icao]
-            attrs = filter(lambda x: not x.endswith('__'), dir(old))
+        if info.modeSCode in self.__adsbBuffer:
+            old = self.__adsbBuffer[info.modeSCode]
+            attrs = ["collector","modeSCode", "callsign", "latitude", "longitude", "altitude", "horizontalVelocity", "groundTrackHeading", "verticalVelocity", "messagDataId", "messagDataPositionEven", "messagDataPositionOdd", "messagDataVelocity", "timestamp", "timestampSent"]
             for attr in attrs:
-                if getattr(info, attr):
-                    setattr(old, attr, getattr(info, attr))
+                try:
+                    if getattr(info, attr):
+                        setattr(old, attr, getattr(info, attr))
+                except Exception as err:
+                    log.error("DataInput: setting attribute %s: %s" % (str(attr), str(err)))
 
             return old
         else:
-            self.__adsbBuffer[info.icao] = info
+            self.__adsbBuffer[info.modeSCode] = info
             return info
 

@@ -157,7 +157,7 @@ class ADSBInfo(Model):
         }
 
     def __repr__(self):
-        return "ADSBInfo[icao=%s, callsign=%s]" % (self.modeSCode, self.callsign)
+        return "ADSBInfo[icao=%s, callsign=%s, lat=%s, lng=%s]" % (self.modeSCode, self.callsign, str(self.latitude), str(self.longitude))
 
 
 db.connect()

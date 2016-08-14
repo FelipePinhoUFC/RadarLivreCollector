@@ -31,14 +31,14 @@ def onOpen(err):
     if err:
         log.error("Receptor open: %s" % str(err))
     else:
-        log.error("Receptor open: opened!")
+        log.info("Receptor open: opened!")
 
 
 def onClose(err):
     if err:
         log.error("Receptor close: %s" % str(err))
     else:
-        log.error("Receptor close: closed!")
+        log.info("Receptor close: closed!")
 
 
 def onMessage(data):
@@ -67,7 +67,7 @@ def onMessage(data):
 
 def onADSBInfo(info):
     __DATA_UPLOADER.addADSBInfo(info)
-    log.info("Complete Message Received from ADSBHub.com: %s" % str(info))
+    # log.info("Complete Message Received from ADSBHub.com: %s" % str(info))
 
 
 def start():

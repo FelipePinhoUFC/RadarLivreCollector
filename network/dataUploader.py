@@ -12,7 +12,7 @@ from threading import Thread
 
 import requests
 
-from config import LOGIN, PASSWORD, COLLECTOR_ID
+from config import LOGIN, PASSWORD, COLLECTOR_ID, LOCAL_DATA_ENABLED
 
 
 class DataUploader(Thread):
@@ -25,7 +25,7 @@ class DataUploader(Thread):
     bufferSizeLimit = None
 
 
-    def __init__(self, serverHost="www.radarlivre.com", sendHelloInterval=10000, sendADSBInfoInterval=1000, bufferSizeLimit=256):
+    def __init__(self, serverHost="www.radarlivre.com", sendHelloInterval=10000, sendADSBInfoInterval=500, bufferSizeLimit=2048):
         Thread.__init__(self)
         self.__serverHost = serverHost
         self.sendHelloInterval = sendHelloInterval
@@ -53,22 +53,27 @@ class DataUploader(Thread):
 
 
     def addADSBInfo(self, adsbInfo):
-        if len(self.__adsbInfoBuffer) >= self.bufferSizeLimit:
-            adsbInfo.save()
+        if LOCAL_DATA_ENABLED:
+            if len(self.__adsbInfoBuffer) >= self.bufferSizeLimit:
+                adsbInfo.save()
+            else:
+                self.__adsbInfoBuffer.append(adsbInfo)
+                querySet = ADSBInfo.select()
+                storeds = []
+                for info in querySet:
+                    storeds.append(info)
+
+                while len(self.__adsbInfoBuffer) < self.bufferSizeLimit:
+                    if storeds:
+                        self.__adsbInfoBuffer.append(storeds[0])
+                        storeds[0].delete_instance()
+                        del storeds[0]
+                    else:
+                        break
         else:
             self.__adsbInfoBuffer.append(adsbInfo)
-            querySet = ADSBInfo.select()
-            storeds = []
-            for info in querySet:
-                storeds.append(info)
-
-            while len(self.__adsbInfoBuffer) < self.bufferSizeLimit:
-                if storeds:
-                    self.__adsbInfoBuffer.append(storeds[0])
-                    storeds[0].delete_instance()
-                    del storeds[0]
-                else:
-                    break
+            if len(self.__adsbInfoBuffer) > self.bufferSizeLimit:
+                del self.__adsbInfoBuffer[0]
 
         log.info("DataUploader: Adding adsbInfo: %d" % len(self.__adsbInfoBuffer))
 
@@ -86,8 +91,7 @@ class DataUploader(Thread):
 
 
     def __sendADSBInfoToServer(self):
-        if self.__adsbInfoBuffer:
-            log.info("DataUploader: Sending data to server: %d" % len(self.__adsbInfoBuffer))
+        log.info("DataUploader: Sending data to server: %d" % len(self.__adsbInfoBuffer))
 
         while self.__adsbInfoBuffer:
             info = self.__adsbInfoBuffer[0]
@@ -108,17 +112,19 @@ class DataUploader(Thread):
 
 
     def persistBuffer(self):
-        for info in self.__adsbInfoBuffer:
-            info.save()
-        log.info("DataUploader: Persisting data before close")
+        if LOCAL_DATA_ENABLED:
+            for info in self.__adsbInfoBuffer:
+                info.save()
+            log.info("DataUploader: Persisting data before close")
 
     def loadBuffer(self):
-        infos = ADSBInfo.select()
-        for info in infos:
-            self.__adsbInfoBuffer.append(info)
-            info.delete_instance()
-            if len(self.__adsbInfoBuffer) >= self.bufferSizeLimit:
-                break
+        if LOCAL_DATA_ENABLED:
+            infos = ADSBInfo.select()
+            for info in infos:
+                self.__adsbInfoBuffer.append(info)
+                info.delete_instance()
+                if len(self.__adsbInfoBuffer) >= self.bufferSizeLimit:
+                    break
 
         log.info("DataUploader: loading from local data: %d" % len(self.__adsbInfoBuffer))
 
