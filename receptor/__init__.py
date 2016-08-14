@@ -1,11 +1,18 @@
 import logging as log
+
+from network.dataInput import DataInput
+
 log.basicConfig(level=log.DEBUG)
 
-from config import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT
+from network.dataUploader import DataUploader
+
+
+from config import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT, DATA_INPUT_HOST, DATA_INPUT_PORT, \
+    DATA_INPUT_ENABLED, SERVER_HOST
 from network.dataOutput import DataOutput
 
 
-from models import RawData, MessageBuffer
+from models import RawData, MessageBuffer, ADSBInfo
 from receptor.microADSB import MicroADSB
 
 
@@ -13,9 +20,11 @@ from pyModeS import adsb
 
 
 __running = False
-__MAP_BUFFER = {}
+__RAW_BUFFER = {}
+__DATA_UPLOADER = DataUploader(serverHost=SERVER_HOST)
 __MICRO_ADSB = MicroADSB()
 __DATA_OUTPUT = DataOutput(DATA_OUTPUT_HOST, DATA_OUTPUT_PORT)
+__DATA_INPUT = DataInput(DATA_INPUT_HOST, DATA_INPUT_PORT)
 
 
 def onOpen(err):
@@ -42,17 +51,24 @@ def onMessage(data):
 
             __DATA_OUTPUT.addData(rawData.frame)
 
-            if not icao in __MAP_BUFFER:
-                __MAP_BUFFER[icao] = MessageBuffer(icao=icao)
+            if not icao in __RAW_BUFFER:
+                __RAW_BUFFER[icao] = MessageBuffer(icao=icao)
 
-            __MAP_BUFFER[icao].addRawData(rawData)
+            __RAW_BUFFER[icao].addRawData(rawData)
 
-            if __MAP_BUFFER[icao].isComplete():
-                log.info("Complete Message Received: %s" % str(__MAP_BUFFER[icao]))
-                del __MAP_BUFFER[icao]
+            if __RAW_BUFFER[icao].isComplete():
+                adsbInfo = ADSBInfo.createFromMessageBuffer(__RAW_BUFFER[icao])
+                __DATA_UPLOADER.addADSBInfo(adsbInfo)
+                log.info("Complete Message Received: %s" % str(__RAW_BUFFER[icao]))
 
         else:
             log.info("Invalid Raw Message Received: %s" % str(rawData.frame))
+
+
+def onADSBInfo(info):
+    __DATA_UPLOADER.addADSBInfo(info)
+    log.info("Complete Message Received from ADSBHub.com: %s" % str(info))
+
 
 def start():
     log.info("Starting receptor...")
@@ -63,9 +79,17 @@ def start():
     __MICRO_ADSB.onMessage = onMessage
     __MICRO_ADSB.open()
 
+    global __DATA_UPLOADER
+    __DATA_UPLOADER.start()
+
     if DATA_OUTPUT_ENABLED:
         global __DATA_OUTPUT
         __DATA_OUTPUT.start()
+
+    if DATA_INPUT_ENABLED:
+        global __DATA_INPUT
+        __DATA_INPUT.onADSBInfoReceived = onADSBInfo
+        __DATA_INPUT.connect()
 
     try:
         __running = True
@@ -81,5 +105,7 @@ def stop():
 def __stop():
     log.info("Stopping receptor...")
     __MICRO_ADSB.close()
+    __DATA_UPLOADER.stop()
     __DATA_OUTPUT.stop()
+    __DATA_INPUT.disconnect()
     __MAP_BUFFER = None

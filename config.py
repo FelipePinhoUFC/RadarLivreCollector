@@ -1,5 +1,5 @@
-SERVER_IP = "200.129.38.153"
-SERVER_IP = "localhost:8000"
+SERVER_HOST = "200.129.38.153"
+SERVER_HOST = "localhost:8000"
 
 LOGIN = "root"
 PASSWORD = "root7685"
@@ -10,10 +10,10 @@ LATITUDE = -4.864177
 LONGITUDE = -39.581899
 
 # Define a location to local database
-DATABASE_DIR = "/home/felipe/Projects/WEB/RadarLivre/RadarLivreCollector/collectorPython/data"
+DATABASE_DIR = "/home/felipe/Projects/WEB/RadarLivre/RadarLivreCollector/data"
 
 # Define a location to log files
-LOG_DIR = "/home/felipe/Projects/WEB/RadarLivre/RadarLivreCollector/collectorPython/log"
+LOG_DIR = "/home/felipe/Projects/WEB/RadarLivre/RadarLivreCollector/log"
 
 # Override with the collector adress, normaly located in /dev/ttyACM...
 COLLECTOR_ADDRESS = '/dev/ttyACM0'
@@ -24,3 +24,7 @@ MAX_MESSAGE_AGE = 60 * 1000
 DATA_OUTPUT_ENABLED = True
 DATA_OUTPUT_HOST = "127.0.0.1"
 DATA_OUTPUT_PORT = 30003
+
+DATA_INPUT_ENABLED = True
+DATA_INPUT_HOST = "127.0.0.1"
+DATA_INPUT_PORT = 30004
