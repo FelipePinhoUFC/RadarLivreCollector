@@ -1,3 +1,4 @@
+
 import logging as log
 
 from pyModeS import adsb
@@ -24,10 +25,11 @@ class RawData():
 
 class MessageBuffer():
 
-    dataId = None
-    dataPositionEven = None
-    dataPositionOdd = None
-    dataVelocity = None
+    icao = ""
+    dataId = []
+    dataPositionEven = []
+    dataPositionOdd = []
+    dataVelocity = []
 
     def __init__(self, **kwargs):
         for k, v in kwargs.iteritems():
@@ -36,10 +38,25 @@ class MessageBuffer():
     def addRawData(self, rawData):
         type = adsb.typecode(rawData.frame[1:29])
         if type >= 1 and type <= 4:
-            pass
+            self.dataId.append(rawData)
+            self.dataId.sort(reverse=True)
+        elif type >= 9 and type <= 18:
+            flag = adsb.oe_flag()
+            if flag == 0:
+                self.dataPositionEven.append(rawData)
+                self.dataPositionEven.sort(reverse=True)
+            else:
+                self.dataPositionOdd.append(rawData)
+                self.dataPositionOdd.sort(reverse=True)
+        elif type == 19:
+            self.dataVelocity.append(rawData)
+            self.dataVelocity.sort(reverse=True)
 
     def isComplete(self):
         return self.dataId and self.dataPositionEven and self.dataPositionOdd and self.dataVelocity
+
+    def __repr__(self):
+        return "MsgBuff: [ic=%s, di=%d, do=%d, de=%d, dv=%d]" % self.icao, len(self.dataId), len(self.dataPositionEven), len(self.dataPositionOdd), len(self.dataVelocity)
 
 
 def __onOpen(err):
@@ -61,9 +78,13 @@ def __onMessage(data):
         rawData = RawData(data)
 
         if rawData.downlinkformat == 17:
-            icao24 = adsb.icao(rawData.frame[1:29])
+            icao = adsb.icao(rawData.frame[1:29])
 
-            if not icao24 in __MAP_BUFFER:
-                __MAP_BUFFER[icao24] = []
+            if not icao in __MAP_BUFFER:
+                __MAP_BUFFER[icao] = MessageBuffer(icao=icao)
 
-            __MAP_BUFFER[icao24].append(rawData)
+            __MAP_BUFFER[icao].addMessage(rawData)
+
+            if __MAP_BUFFER[icao].isComplete():
+                log.info("Message Received: %s" % __MAP_BUFFER[icao])
+                del __MAP_BUFFER[icao]
