@@ -53,6 +53,9 @@ class AsyncServerSocket(Thread):
         self.__listening = listening
         self.__lockListening.release()
 
+    def isListening(self):
+        return self.__listening
+
     def run(self):
         if self.__listening:
             log.error("Socket Server: Server is already listening!")
