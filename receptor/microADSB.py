@@ -5,33 +5,26 @@ from serial.serialutil import PARITY_NONE
 from threading import Thread
 from time import sleep
 
+import logging as log
+log.basicConfig(level=log.DEBUG)
 
 class AsyncTask(Thread):
 
     doInBackground = None
-    callback = None
 
-    def __init__(self, doInBackground, callback):
+    def __init__(self, doInBackground):
         Thread.__init__(self)
         self.doInBackground = doInBackground
-        self.callback = callback
 
     def run(self):
         if self.doInBackground:
             try:
-                self.doInBackground(self.callback)
+                self.doInBackground()
             except:
                 pass
 
 class MicroADSB():
 
-    __CALLBACKS = {
-        'open': None,
-        'message': None,
-        'heartbeat': None,
-        'err': None,
-        'close': None
-    }
     __SERIAL = None
     __BUFFER = ''
 
@@ -143,19 +136,7 @@ class MicroADSB():
         return re.sub("0x(\d)", "0x0\\1", result)
 
 
-    def on(self, event, callback):
-        if event in self.__CALLBACKS:
-            self.__CALLBACKS[event] = callback
-        else:
-            raise Exception('The event ' + str(event) + ' is not handled by MicroADSB')
-        return self
-
-    def close(self, **kwargs):
-        callback = None
-        if 'callback' in kwargs:
-            callback = kwargs[callback]
-        err = None
-
+    def close(self):
         self.__stopListeningAndJoin()
 
         if self.__SERIAL:
@@ -167,46 +148,29 @@ class MicroADSB():
                 self.online = False
                 self.firmware = None
 
-            except Exception as e:
-                err = e
+            except Exception as err:
                 if self.__SERIAL.is_open:
                     self.__SERIAL.close()
+                self.onClose(err)
+                return
 
-            if callback:
-                callback(err)
-            elif self.__CALLBACKS["close"]:
-                self.__CALLBACKS["close"](err)
-            else:
-                print str("178 - Error: MicroADSB: " + str(err))
+        self.onClose(None)
 
 
-
-    def open(self, **kwargs):
-        callback = None
-        if 'callback' in kwargs:
-            callback = kwargs[callback]
-        err = None
-
+    def open(self):
         try:
             self.__SERIAL = Serial(port=self.device, baudrate=self.baudrate, bytesize=self.databits, parity=self.parity, timeout=0)
-            self.asyncTask = AsyncTask(self.__listen, callback)
+            self.asyncTask = AsyncTask(self.__listen)
             self.asyncTask.start()
-        except Exception as e:
-            err = e
+        except Exception as err:
             self.__SERIAL = None
             self.__BUFFER = ''
             self.online = False
             self.firmware = None
-
-            if callback:
-                callback(err)
-            elif self.__CALLBACKS["open"]:
-                self.__CALLBACKS["open"](err)
-            else:
-                print str("204 - Error: MicroADSB: " + str(err))
+            self.onOpen(err)
 
 
-    def __listen(self, callback):
+    def __listen(self):
 
         try:
             self.__SERIAL.write(self.__commandFormat(['0x00']))
@@ -216,12 +180,7 @@ class MicroADSB():
             self.__BUFFER = ""
             self.online = False
             self.firmware = None
-            if callback:
-                callback(err)
-            elif self.__CALLBACKS["open"]:
-                self.__CALLBACKS["open"](err)
-            else:
-                print str("222- Error: MicroADSB: " + str(err))
+            self.onOpen(err)
 
         try:
             if not self.__listening:
@@ -278,23 +237,11 @@ class MicroADSB():
                                             self.__BUFFER = ""
                                             self.online = False
                                             self.firmware = None
-                                            if callback:
-                                                callback(err)
-                                            elif self.__CALLBACKS["open"]:
-                                                self.__CALLBACKS["open"](err)
-                                            else:
-                                                print str("268 - Error: MicroADSB: " + str(err))
-
+                                            self.onOpen(err)
                                     elif result["data"][0] == 0x43:
                                         if True or result["data"][1] == self.__mode(self.raw, self.heartbeats, self.frameids, self.timestamps, self.mode):
                                             self.online = True
-
-                                            if callback:
-                                                callback(None)
-                                            elif self.__CALLBACKS["open"]:
-                                                self.__CALLBACKS["open"](None)
-                                            else:
-                                                print "MicroADSB opened Successfully!"
+                                            self.onOpen(None)
 
                                         else:
                                             self.__stopListening()
@@ -304,12 +251,7 @@ class MicroADSB():
                                             self.online = False
                                             self.firmware = None
                                             err = "Failed to set ADS-B mode"
-                                            if callback:
-                                                callback(err)
-                                            elif self.__CALLBACKS["open"]:
-                                                self.__CALLBACKS["open"](err)
-                                            else:
-                                                print str("294 - Error: MicroADSB: " + str(err))
+                                            self.onOpen(err)
 
 
                                 elif self.__CALLBACKS["message"]:
@@ -331,12 +273,7 @@ class MicroADSB():
             self.__BUFFER = ""
             self.online = False
             self.firmware = None
-            if callback:
-                callback(err)
-            elif self.__CALLBACKS["open"]:
-                self.__CALLBACKS["open"](err)
-            else:
-                print str("340 - Error: MicroADSB: " + str(err))
+            self.onOpen(err)
 
 
     def __stopListeningAndJoin(self):
@@ -345,3 +282,22 @@ class MicroADSB():
 
     def __stopListening(self):
         self.__listening = False
+
+    def onOpen(self, err):
+        if err:
+            log.error("MicroASDB: %s" % str(err))
+
+    def onMessage(self, msg):
+        if msg:
+            log.error("MicroASDB: %s" % str(msg))
+
+    def onHeartBeat(self):
+        pass
+
+    def onError(self, err):
+        if err:
+            log.error("MicroASDB: %s" % str(err))
+
+    def onClose(self, err):
+        if err:
+            log.error("MicroASDB: %s" % str(err))
