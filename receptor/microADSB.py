@@ -44,10 +44,13 @@ class MicroADSB():
     raw = False
     mode = 2
 
-    __listening = False
+    __running = False
     asyncTask = None
 
-    def __init__(self, **kwargs):
+    autoReconnect = False
+
+    def __init__(self, device="/dev/ttyACM0", **kwargs):
+        self.device = device
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -137,12 +140,13 @@ class MicroADSB():
 
 
     def close(self):
-        self.__stopListeningAndJoin()
+        self.__running = False
 
         if self.__SERIAL:
             try:
-                self.__SERIAL.write([0xff])
-                self.__SERIAL.close()
+                if self.__SERIAL.is_open:
+                    self.__SERIAL.write([0xff])
+                    self.__SERIAL.close()
                 self.__SERIAL = None
                 self.__BUFFER = None
                 self.online = False
@@ -151,137 +155,150 @@ class MicroADSB():
             except Exception as err:
                 if self.__SERIAL.is_open:
                     self.__SERIAL.close()
-                self.onClose(err)
                 return
 
-        self.onClose(None)
-
-
     def open(self):
-        try:
-            self.__SERIAL = Serial(port=self.device, baudrate=self.baudrate, bytesize=self.databits, parity=self.parity, timeout=0)
-            self.asyncTask = AsyncTask(self.__listen)
-            self.asyncTask.start()
-        except Exception as err:
-            self.__SERIAL = None
-            self.__BUFFER = ''
-            self.online = False
-            self.firmware = None
-            self.onOpen(err)
+        self.asyncTask = AsyncTask(self.__open)
+        self.asyncTask.start()
 
 
-    def __listen(self):
+    def __open(self):
 
-        try:
-            self.__SERIAL.write(self.__commandFormat(['0x00']))
-        except Exception as err:
-            self.__SERIAL.close()
-            self.__SERIAL = None
-            self.__BUFFER = ""
-            self.online = False
-            self.firmware = None
-            self.onOpen(err)
+        if self.__running:
+            self.onOpen("MicroADSB: the receptor is already running!")
+            return
+        else:
+            self.__running = True
 
-        try:
-            if not self.__listening:
-                self.__listening = True
-                while self.__listening:
-                    result = None
+        while self.__running:
 
-                    data = self.__SERIAL.read()
+            # Try open connection with receptor
+            # ...
+            try:
+                self.__SERIAL = Serial(
+                    port=self.device, baudrate=self.baudrate, bytesize=self.databits, parity=self.parity, timeout=0
+                )
+
+                # Try initialize data receive
+                try:
+                    self.__SERIAL.write(self.__commandFormat(['0x00']))
+                except Exception as err:
+                    self.__SERIAL.close()
+                    self.__SERIAL = None
+                    self.__BUFFER = ""
+                    self.online = False
+                    self.firmware = None
+                    self.onOpen(err)
+
+                # Try main loop
+                try:
+                    self.__running = True
+                    while self.__running:
+                        result = None
+
+                        data = self.__SERIAL.read()
 
 
-                    self.__BUFFER += str(data)
+                        self.__BUFFER += str(data)
 
-                    while self.__listening:
-                        self.__BUFFER = re.sub('^(\r\n|\n\r?|\n|\r)+', '', self.__BUFFER)
+                        while self.__running:
+                            self.__BUFFER = re.sub('^(\r\n|\n\r?|\n|\r)+', '', self.__BUFFER)
 
-                        pattern1 = re.compile("^(\x1a(?:\x32.{14}|\x33.{21}))")
-                        matches1 = pattern1.findall(self.__BUFFER)
-                        matches1 = None if not matches1 else matches1[0]
-                        pattern2 = re.compile("^([^\r\n]*)(\r\n?|\n\r?)")
-                        matches2 = pattern2.findall(self.__BUFFER)
-                        matches2 = None if not matches2 else matches2[0]
-                        if matches1:
-                            self.__BUFFER = self.__BUFFER[len(matches1[0]):]
-                            # ...
+                            pattern1 = re.compile("^(\x1a(?:\x32.{14}|\x33.{21}))")
+                            matches1 = pattern1.findall(self.__BUFFER)
+                            matches1 = None if not matches1 else matches1[0]
+                            pattern2 = re.compile("^([^\r\n]*)(\r\n?|\n\r?)")
+                            matches2 = pattern2.findall(self.__BUFFER)
+                            matches2 = None if not matches2 else matches2[0]
+                            if matches1:
+                                self.__BUFFER = self.__BUFFER[len(matches1[0]):]
+                                # ...
 
-                        elif matches2:
-                            self.__BUFFER = self.__BUFFER[len(matches2[0]) + len(matches2[1]):]
+                            elif matches2:
+                                self.__BUFFER = self.__BUFFER[len(matches2[0]) + len(matches2[1]):]
 
-                            result = self.__microADSBASCIIToObject(matches2[0])
-                            if result:
-                                if result["type"] == "#":
-                                    if result["data"][0] == 0x00:
-                                        self.firmware = result["data"][2]
-                                        self.id = result["data"][3]
+                                result = self.__microADSBASCIIToObject(matches2[0])
+                                if result:
+                                    if result["type"] == "#":
+                                        if result["data"][0] == 0x00:
+                                            self.firmware = result["data"][2]
+                                            self.id = result["data"][3]
 
-                                        toWrite = self.__commandFormat(
-                                                        [
-                                                            '0x43',
-                                                            self.__mode(
-                                                                self.raw,
-                                                                self.heartbeats,
-                                                                self.frameids,
-                                                                self.timestamps,
-                                                                self.mode
-                                                            )
-                                                        ]
-                                                    )
-                                        try:
-                                            self.__SERIAL.write(toWrite)
-                                        except Exception as err:
-                                            self.__stopListening()
-                                            self.__SERIAL.close()
-                                            self.__SERIAL = None
-                                            self.__BUFFER = ""
-                                            self.online = False
-                                            self.firmware = None
-                                            self.onOpen(err)
-                                    elif result["data"][0] == 0x43:
-                                        if True or result["data"][1] == self.__mode(self.raw, self.heartbeats, self.frameids, self.timestamps, self.mode):
-                                            self.online = True
-                                            self.onOpen(None)
+                                            toWrite = self.__commandFormat(
+                                                            [
+                                                                '0x43',
+                                                                self.__mode(
+                                                                    self.raw,
+                                                                    self.heartbeats,
+                                                                    self.frameids,
+                                                                    self.timestamps,
+                                                                    self.mode
+                                                                )
+                                                            ]
+                                                        )
+                                            try:
+                                                self.__SERIAL.write(toWrite)
+                                            except Exception as err:
+                                                self.__stopListening()
+                                                self.__SERIAL.close()
+                                                self.__SERIAL = None
+                                                self.__BUFFER = ""
+                                                self.online = False
+                                                self.firmware = None
+                                                self.onOpen(err)
+                                        elif result["data"][0] == 0x43:
+                                            if True or result["data"][1] == self.__mode(self.raw, self.heartbeats, self.frameids, self.timestamps, self.mode):
+                                                self.online = True
+                                                self.onOpen(None)
+
+                                            else:
+                                                self.__stopListening()
+                                                self.__SERIAL.close()
+                                                self.__SERIAL = None
+                                                self.__BUFFER = ""
+                                                self.online = False
+                                                self.firmware = None
+                                                err = "Failed to set ADS-B mode"
+                                                self.onOpen(err)
+
+
+                                    else:
+                                        if result["downlinkformat"] == 23:
+                                            self.onHeartBeat()
 
                                         else:
-                                            self.__stopListening()
-                                            self.__SERIAL.close()
-                                            self.__SERIAL = None
-                                            self.__BUFFER = ""
-                                            self.online = False
-                                            self.firmware = None
-                                            err = "Failed to set ADS-B mode"
-                                            self.onOpen(err)
+                                            self.onMessage(result)
+
+                            else:
+                                break
+
+                        sleep(.001)
+
+                except Exception as err:
+                    self.__SERIAL = None
+                    self.__BUFFER = ''
+                    self.online = False
+                    self.firmware = None
+                    self.onOpen(err)
+
+            except Exception as err:
+                self.__SERIAL = None
+                self.__BUFFER = ""
+                self.online = False
+                self.firmware = None
+                self.onOpen(err)
 
 
-                                elif self.__CALLBACKS["message"]:
-                                    if result["downlinkformat"] == 23:
-                                        if self.__CALLBACKS["heartbeat"]:
-                                            self.__CALLBACKS["heartbeat"]()
+            if not self.autoReconnect:
+                self.close()
+                break
+            else:
+                log.info("MicroADSB: Reconnecting in 3 seconds...")
+                sleep(3)
+                log.info("MicroADSB: Reconnecting...")
+                self.onReconnecting()
 
-                                    elif self.__CALLBACKS["message"]:
-                                        self.__CALLBACKS["message"](result)
-
-                        else:
-                            break
-
-                    sleep(.001)
-
-        except Exception as err:
-            self.__SERIAL.close()
-            self.__SERIAL = None
-            self.__BUFFER = ""
-            self.online = False
-            self.firmware = None
-            self.onOpen(err)
-
-
-    def __stopListeningAndJoin(self):
-        self.__listening = False
-        self.asyncTask.join()
-
-    def __stopListening(self):
-        self.__listening = False
+        self.onClose(None)
 
     def onOpen(self, err):
         if err:
@@ -301,3 +318,6 @@ class MicroADSB():
     def onClose(self, err):
         if err:
             log.error("MicroASDB: %s" % str(err))
+
+    def onReconnecting(self):
+        pass

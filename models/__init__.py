@@ -37,7 +37,7 @@ class MessageBuffer():
             self.dataId.append(rawData)
             self.dataId.sort(reverse=True)
         elif type >= 9 and type <= 18:
-            flag = adsb.oe_flag()
+            flag = adsb.oe_flag(rawData.frame[1:29])
             if flag == 0:
                 self.dataPositionEven.append(rawData)
                 self.dataPositionEven.sort(reverse=True)

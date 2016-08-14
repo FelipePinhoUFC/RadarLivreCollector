@@ -1,4 +1,6 @@
 import logging as log
+import subprocess
+
 log.basicConfig(level=log.DEBUG)
 
 import socket
@@ -31,50 +33,55 @@ class AsyncTask(Thread):
         self.running = False
 
 
-class AsyncServerSocket():
-    __lock = RLock()
+class AsyncServerSocket(Thread):
+    __lockListening = RLock()
+    __lockSocket = RLock()
+    __lockClients = RLock()
     __socket = None
     __host = None
     __port = None
     __listening = False
+    __clients = {}
 
     def __init__(self, host="127.0.0.1", port=7685):
+        Thread.__init__(self)
         self.__host = host
         self.__port = port
 
     def __setListening(self, listening):
-        self.__lock.acquire()
+        self.__lockListening.acquire()
         self.__listening = listening
-        self.__lock.release()
+        self.__lockListening.release()
 
-    def start(self):
+    def run(self):
         if self.__listening:
             log.error("Socket Server: Server is already listening!")
             return
 
-        else:
-            self.onStarted()
-
         try:
-            self.__lock.acquire()
+            subprocess.call(["fuser", "-k", "%d/tcp" % self.__port])
+            sleep(.1)
+            self.__lockSocket.acquire()
             self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.__socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.__socket.bind((self.__host, self.__port))
             self.__socket.listen(1)
-            self.__lock.release()
+            self.__lockSocket.release()
 
         except Exception as err:
             log.error("Socket Server: %s" % str(err))
-            self.stop()
+            self.onStoped()
             return
+
+        self.onStarted()
 
         self.__setListening(True)
 
         while self.__listening:
             try:
-                self.__lock.acquire()
+                self.__lockSocket.acquire()
                 task = AsyncTask(self.__handleConnection, self.__socket.accept())
-                self.__lock.release()
+                self.__lockSocket.release()
                 task.start()
 
             except KeyboardInterrupt as err:
@@ -84,9 +91,16 @@ class AsyncServerSocket():
             except Exception as err:
                 pass
 
-        self.stop()
+        self.__lockSocket.acquire()
+        self.__socket.close()
+        self.__lockSocket.release()
+
+        self.onStoped()
 
     def __handleConnection(self, connetionAndClientAddress):
+        self.__lockListening.acquire()
+        self.__clients[connetionAndClientAddress[1]] = connetionAndClientAddress[0]
+        self.__lockListening.release()
         conn = connetionAndClientAddress[0]
         self.onClienteConnected(connetionAndClientAddress[1])
 
@@ -98,7 +112,8 @@ class AsyncServerSocket():
                         break
                     else:
                         response = self.onClientMessage(request)
-                        conn.send(response)
+                        if response:
+                            conn.send(response)
                 except socket.timeout:
                     pass
 
@@ -118,16 +133,22 @@ class AsyncServerSocket():
                 pass
 
             conn.close()
+            self.__lockClients.acquire()
+            del self.__clients[connetionAndClientAddress[1]]
+            self.__lockClients.release()
             self.onClientDisconnected(connetionAndClientAddress[1])
+
 
     def stop(self):
         if self.__listening:
             self.__setListening(False)
-            self.onStoped()
 
-        self.__lock.acquire()
-        self.__socket.close()
-        self.__lock.release()
+    def getConnectionCount(self):
+        return len(self.__clients)
+
+    def sendBroadcast(self, msg):
+        for a, c in self.__clients.iteritems():
+            c.send(msg)
 
     def onClientMessage(self, msg):
         log.info("Server Socket: message from client: %s" % msg)
@@ -166,16 +187,15 @@ class ClientSocket():
         try:
             self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.__socket.connect((self.__host, self.__port))
+            self.__setRunning(True)
+            task = AsyncTask(self.__handleConnection)
+            task.start()
         except Exception as err:
             log.error("Client Socket: %s" % str(err))
             return
 
-        self.__setRunning(True)
-        task = AsyncTask(self.__handleConnection)
-        task.start()
-
     def __handleConnection(self):
-
+        self.onConnected()
         try:
             while(self.__running):
                 try:
@@ -184,7 +204,8 @@ class ClientSocket():
                         break
                     else:
                         response = self.onServerMessage(request)
-                        self.__socket.send(response)
+                        if response:
+                            self.__socket.send(response)
                 except socket.timeout:
                     pass
 
@@ -193,6 +214,7 @@ class ClientSocket():
             log.error("Client Socket: %s" % str(err))
         finally:
             self.__socket.close()
+            self.onDisconnected()
 
     def sendMessage(self, msg):
         if self.__socket and self.__running:

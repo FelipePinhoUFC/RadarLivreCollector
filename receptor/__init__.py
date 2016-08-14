@@ -38,24 +38,31 @@ def onMessage(data):
             if not icao in __MAP_BUFFER:
                 __MAP_BUFFER[icao] = MessageBuffer(icao=icao)
 
-            __MAP_BUFFER[icao].addMessage(rawData)
+            __MAP_BUFFER[icao].addRawData(rawData)
 
             if __MAP_BUFFER[icao].isComplete():
                 log.info("Complete Message Received: %s" % __MAP_BUFFER[icao])
                 del __MAP_BUFFER[icao]
 
+        else:
+            log.info("Invalid Raw Message Received: %s" % rawData.frame)
+
 def start():
     log.info("Starting receptor...")
 
+    global __MICRO_ADSB
     __MICRO_ADSB = MicroADSB()
     __MICRO_ADSB.onOpen = onOpen
     __MICRO_ADSB.onClose = onClose
     __MICRO_ADSB.onMessage = onMessage
     __MICRO_ADSB.open()
 
-    __running = True
-    while __running:
-        pass
+    try:
+        __running = True
+        while __running:
+            pass
+    except:
+        stop()
 
 def stop():
     log.info("Stopping receptor...")
