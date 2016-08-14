@@ -28,10 +28,19 @@ class DataOutput(AsyncServerSocket):
 
     def onClienteConnected(self, clientAddress):
         log.info("DataOutput: connected with: %s" % str(clientAddress))
+        msgs = open("msg.txt").read().split("\n")
+        index = 0
         while self.isListening():
+            '''
             if self.__dataFuffer:
                 self.__lockDataBuffer.acquire()
                 self.sendBroadcast(self.__dataFuffer[0])
                 del self.__dataFuffer[0]
                 self.__lockDataBuffer.release()
+
             sleep(0.1)
+            '''
+            self.sendBroadcast("*" + msgs[index] + ";")
+            index += 1
+            sleep(5)
+

@@ -1,9 +1,12 @@
 import logging as log
+log.basicConfig(level=log.DEBUG)
+log.getLogger("requests").setLevel(log.WARNING)
+log.getLogger("urllib3").setLevel(log.WARNING)
+
 from time import sleep
 
 from models import ADSBInfo
 
-log.basicConfig(level=log.DEBUG)
 
 from threading import Thread
 
@@ -21,12 +24,13 @@ class DataUploader(Thread):
     sendADSBInfoInterval = None
     bufferSizeLimit = None
 
-    def __init__(self, serverHost="www.radarlivre.com", sendHelloInterval=10000, sendADSBInfoInterval=500, bufferSizeLimit=256):
+
+    def __init__(self, serverHost="www.radarlivre.com", sendHelloInterval=10000, sendADSBInfoInterval=1000, bufferSizeLimit=256):
         Thread.__init__(self)
         self.__serverHost = serverHost
         self.sendHelloInterval = sendHelloInterval
         self.sendADSBInfoInterval = sendADSBInfoInterval
-        self.bufferSizeLimit
+        self.bufferSizeLimit = bufferSizeLimit
 
         self.loadBuffer()
 
@@ -53,7 +57,11 @@ class DataUploader(Thread):
             adsbInfo.save()
         else:
             self.__adsbInfoBuffer.append(adsbInfo)
-            storeds = ADSBInfo.select()
+            querySet = ADSBInfo.select()
+            storeds = []
+            for info in querySet:
+                storeds.append(info)
+
             while len(self.__adsbInfoBuffer) < self.bufferSizeLimit:
                 if storeds:
                     self.__adsbInfoBuffer.append(storeds[0])
@@ -105,7 +113,7 @@ class DataUploader(Thread):
         log.info("DataUploader: Persisting data before close")
 
     def loadBuffer(self):
-        infos = self.__adsbInfoBuffer = ADSBInfo.select()
+        infos = ADSBInfo.select()
         for info in infos:
             self.__adsbInfoBuffer.append(info)
             info.delete_instance()
@@ -117,6 +125,7 @@ class DataUploader(Thread):
 
     def stop(self):
         log.info("DataUploader: Stoping...")
+        self.persistBuffer()
         self.__running = False
 
 

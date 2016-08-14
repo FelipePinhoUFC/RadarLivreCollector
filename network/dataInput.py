@@ -10,6 +10,9 @@ from network import ClientSocket
 
 
 class DataInput(ClientSocket):
+
+    __adsbBuffer = {}
+
     def onServerMessage(self, msg):
         log.info("DataInput: Server message %s" % str(msg))
 
@@ -35,7 +38,23 @@ class DataInput(ClientSocket):
                     timestampSent=int(systemTimestamp() * 1000)
                 )
 
-                self.onADSBInfoReceived(info)
+                info = self.__addToBuffer(info)
+                if info.icao and info.callsign and info.latitude and info.longitude:
+                    self.onADSBInfoReceived(info)
 
     def onADSBInfoReceived(self, info):
         log.info("DataInput: New adsb Info received!")
+
+    def __addToBuffer(self, info):
+        if info.icao in self.__adsbBuffer:
+            old = self.__adsbBuffer[info.icao]
+            attrs = filter(lambda x: not x.endswith('__'), dir(old))
+            for attr in attrs:
+                if getattr(info, attr):
+                    setattr(old, attr, getattr(info, attr))
+
+            return old
+        else:
+            self.__adsbBuffer[info.icao] = info
+            return info
+
