@@ -1,21 +1,23 @@
 import logging as log
-log.basicConfig(level=log.DEBUG)
+
+from multiprocessing import RLock
+import os
 log.getLogger("requests").setLevel(log.WARNING)
 log.getLogger("urllib3").setLevel(log.WARNING)
 
 from time import sleep
 
-from models import ADSBInfo
-
-
 from threading import Thread
 
 import requests
 
-from config import LOGIN, PASSWORD, COLLECTOR_ID, LOCAL_DATA_ENABLED
+from config import LOGIN, PASSWORD, COLLECTOR_ID, LOCAL_DATA_ENABLED, LOG_DIR
+
+log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 
 
 class DataUploader(Thread):
+    __lockBuffer = RLock()
     __adsbInfoBuffer = []
     __serverHost = None
     __running = False
@@ -32,7 +34,6 @@ class DataUploader(Thread):
         self.sendADSBInfoInterval = sendADSBInfoInterval
         self.bufferSizeLimit = bufferSizeLimit
 
-        self.loadBuffer()
 
     def run(self):
         self.__running = True
@@ -53,27 +54,11 @@ class DataUploader(Thread):
 
 
     def addADSBInfo(self, adsbInfo):
-        if LOCAL_DATA_ENABLED:
-            if len(self.__adsbInfoBuffer) >= self.bufferSizeLimit:
-                adsbInfo.save()
-            else:
-                self.__adsbInfoBuffer.append(adsbInfo)
-                querySet = ADSBInfo.select()
-                storeds = []
-                for info in querySet:
-                    storeds.append(info)
-
-                while len(self.__adsbInfoBuffer) < self.bufferSizeLimit:
-                    if storeds:
-                        self.__adsbInfoBuffer.append(storeds[0])
-                        storeds[0].delete_instance()
-                        del storeds[0]
-                    else:
-                        break
-        else:
-            self.__adsbInfoBuffer.append(adsbInfo)
-            if len(self.__adsbInfoBuffer) > self.bufferSizeLimit:
-                del self.__adsbInfoBuffer[0]
+        self.__lockBuffer.acquire()
+        self.__adsbInfoBuffer.append(adsbInfo)
+        if len(self.__adsbInfoBuffer) > self.bufferSizeLimit:
+            del self.__adsbInfoBuffer[0]
+        self.__lockBuffer.release()
 
         log.info("DataUploader: Adding adsbInfo: %d" % len(self.__adsbInfoBuffer))
 
@@ -91,47 +76,29 @@ class DataUploader(Thread):
 
 
     def __sendADSBInfoToServer(self):
-        log.info("DataUploader: Sending data to server: %d" % len(self.__adsbInfoBuffer))
+        self.__lockBuffer.acquire()
 
-        while self.__adsbInfoBuffer:
-            info = self.__adsbInfoBuffer[0]
-            json = info.serialize()
+        if self.__adsbInfoBuffer:
+            log.info("DataUploader: Sending data to server: %d" % len(self.__adsbInfoBuffer))
+
+            json = []
+            for info in self.__adsbInfoBuffer:
+                json.append(info.serialize())
 
             try:
                 response = requests.post("http://%s/api/adsb_info/" % str(self.__serverHost), json=json, auth=(LOGIN, PASSWORD))
                 if response.status_code >= 400:
-                    log.warning("DataUploader: %d: %s" % (response.status_code, str(response.json())))
-                    break
+                    log.warning("DataUploader: %d: %s: %s" % (response.status_code, str(response.json()), json))
                 else:
-                    del self.__adsbInfoBuffer[0]
+                    del self.__adsbInfoBuffer[:]
 
             except Exception as err:
                 log.error("DataUploader: %s" % str(err))
-                break
 
-
-
-    def persistBuffer(self):
-        if LOCAL_DATA_ENABLED:
-            for info in self.__adsbInfoBuffer:
-                info.save()
-            log.info("DataUploader: Persisting data before close")
-
-    def loadBuffer(self):
-        if LOCAL_DATA_ENABLED:
-            infos = ADSBInfo.select()
-            for info in infos:
-                self.__adsbInfoBuffer.append(info)
-                info.delete_instance()
-                if len(self.__adsbInfoBuffer) >= self.bufferSizeLimit:
-                    break
-
-        log.info("DataUploader: loading from local data: %d" % len(self.__adsbInfoBuffer))
-
+        self.__lockBuffer.release()
 
     def stop(self):
         log.info("DataUploader: Stoping...")
-        self.persistBuffer()
         self.__running = False
 
 

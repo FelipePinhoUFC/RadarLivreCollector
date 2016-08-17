@@ -1,14 +1,14 @@
 import logging as log
+import os
 
 from network.dataInput import DataInput
 
-log.basicConfig(level=log.DEBUG)
 
 from network.dataUploader import DataUploader
 
 
 from config import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT, DATA_INPUT_HOST, DATA_INPUT_PORT, \
-    DATA_INPUT_ENABLED, SERVER_HOST
+    DATA_INPUT_ENABLED, SERVER_HOST, LOG_DIR
 from network.dataOutput import DataOutput
 
 
@@ -18,6 +18,7 @@ from receptor.microADSB import MicroADSB
 
 from pyModeS import adsb
 
+log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 
 __running = False
 __RAW_BUFFER = {}
@@ -99,10 +100,14 @@ def start():
         __stop()
 
 def stop():
+    global __running
+
     __running = False
 
 
 def __stop():
+    global __MAP_BUFFER
+
     log.info("Stopping receptor...")
     __MICRO_ADSB.close()
     __DATA_UPLOADER.stop()

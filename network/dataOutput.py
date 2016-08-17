@@ -1,10 +1,13 @@
 import logging as log
-log.basicConfig(level=log.DEBUG)
+import os
 
 import threading
 from time import sleep
 
+from config import LOG_DIR
 from network import AsyncServerSocket
+
+log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 
 
 class DataOutput(AsyncServerSocket):
@@ -31,6 +34,7 @@ class DataOutput(AsyncServerSocket):
         msgs = open("msg.txt").read().split("\n")
         index = 0
         while self.isListening():
+
             '''
             if self.__dataFuffer:
                 self.__lockDataBuffer.acquire()
@@ -38,8 +42,8 @@ class DataOutput(AsyncServerSocket):
                 del self.__dataFuffer[0]
                 self.__lockDataBuffer.release()
 
-            sleep(0.1)
-            '''
+            sleep(0.1)'''
+
             self.sendBroadcast("*" + msgs[index] + ";")
             index += 1
             sleep(5)

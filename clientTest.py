@@ -1,6 +1,4 @@
+from models import ADSBInfo
 
-
-class test():
-    a = None
-    b = None
-
+s = ADSBInfo()
+print s.serialize()

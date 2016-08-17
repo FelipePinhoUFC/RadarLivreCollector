@@ -1,12 +1,13 @@
 import logging as log
+import os
 
-from config import COLLECTOR_ID
+from config import COLLECTOR_ID, LOG_DIR
 from models import ADSBInfo
 from time import time as systemTimestamp
 
-log.basicConfig(level=log.DEBUG)
-
 from network import ClientSocket
+
+log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 
 def parseFloat(n):
     try:
@@ -19,34 +20,38 @@ class DataInput(ClientSocket):
     __adsbBuffer = {}
 
     def onServerMessage(self, msg):
-        entries = msg.split("\n")
-        # log.info("DataInput: Server message %d" % len(entries))
-        for entry in entries:
-            entry = entry.split(",")
-            if len(entry) >= 17:
-                info = ADSBInfo(
-                    collector=COLLECTOR_ID,
-                    modeSCode=entry[4],
-                    callsign=entry[10],
-                    latitude=parseFloat(entry[14]),
-                    longitude=parseFloat(entry[15]),
-                    altitude=parseFloat(entry[11]),
-                    horizontalVelocity=parseFloat(entry[12]),
-                    groundTrackHeading=parseFloat(entry[13]),
-                    verticalVelocity=parseFloat(entry[16]),
-                    messagDataId="",
-                    messagDataPositionEven="",
-                    messagDataPositionOdd="",
-                    messagDataVelocity="",
-                    timestamp=int(systemTimestamp() * 1000),
-                    timestampSent=int(systemTimestamp() * 1000)
-                )
+        try:
+            entries = msg.split("\n")
+            # log.info("DataInput: Server message %d" % len(entries))
+            for entry in entries:
+                entry = entry.split(",")
+                if len(entry) >= 17:
+                    info = ADSBInfo(
+                        collector=COLLECTOR_ID,
+                        modeSCode=entry[4],
+                        callsign=entry[10],
+                        latitude=parseFloat(entry[14]),
+                        longitude=parseFloat(entry[15]),
+                        altitude=parseFloat(entry[11]),
+                        horizontalVelocity=parseFloat(entry[12]),
+                        groundTrackHeading=parseFloat(entry[13]),
+                        verticalVelocity=parseFloat(entry[16]),
+                        messagDataId="",
+                        messagDataPositionEven="",
+                        messagDataPositionOdd="",
+                        messagDataVelocity="",
+                        timestamp=int(systemTimestamp() * 1000),
+                        timestampSent=int(systemTimestamp() * 1000)
+                    )
 
-                info = self.__addToBuffer(info)
-                if info.modeSCode and info.callsign and info.latitude and info.longitude:
-                    # log.info("DataInput: A complete info has received from server!")
-                    self.onADSBInfoReceived(info)
-                    del self.__adsbBuffer[info.modeSCode]
+                    info = self.__addToBuffer(info)
+                    if info.modeSCode and info.callsign and info.latitude and info.longitude:
+                        # log.info("DataInput: A complete info has received from server!")
+                        self.onADSBInfoReceived(info)
+                        del self.__adsbBuffer[info.modeSCode]
+
+        except Exception as err:
+            log.info("DataInput: %s!" % err)
 
     def onADSBInfoReceived(self, info):
         log.info("DataInput: New adsb Info received!")

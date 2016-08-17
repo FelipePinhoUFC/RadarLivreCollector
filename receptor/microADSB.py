@@ -1,4 +1,5 @@
 import re
+import os
 from serial import Serial
 
 from serial.serialutil import PARITY_NONE
@@ -6,7 +7,10 @@ from threading import Thread
 from time import sleep
 
 import logging as log
-log.basicConfig(level=log.DEBUG)
+
+from config import LOG_DIR
+
+log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 
 class AsyncTask(Thread):
 
