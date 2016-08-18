@@ -51,7 +51,7 @@ def onMessage(data):
     if data:
         rawData = RawData(data)
 
-        if rawData.downlinkformat == 17:
+        if rawData.downlinkformat == 17 and len(rawData.frame) == 30:
             icao = adsb.icao(rawData.frame[1:29])
             log.info("Raw Message Received: %s" % str(rawData.frame))
 
