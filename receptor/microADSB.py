@@ -185,7 +185,7 @@ class MicroADSB():
 
                 # Try initialize data receive
                 try:
-                    self.__SERIAL.write(self.__commandFormat(['0x00']))
+                    self.__SERIAL.write(self.__commandFormat(['0x00']).encode())
                 except Exception as err:
                     self.__SERIAL.close()
                     self.__SERIAL = None
@@ -241,7 +241,7 @@ class MicroADSB():
                                                             ]
                                                         )
                                             try:
-                                                self.__SERIAL.write(toWrite)
+                                                self.__SERIAL.write(toWrite.encode())
                                             except Exception as err:
                                                 self.__stopListening()
                                                 self.__SERIAL.close()

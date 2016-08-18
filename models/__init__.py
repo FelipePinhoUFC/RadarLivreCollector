@@ -163,5 +163,5 @@ class ADSBInfo(Model):
         return "ADSBInfo[icao=%s, callsign=%s, lat=%s, lng=%s]" % (self.modeSCode, self.callsign, str(self.latitude), str(self.longitude))
 
 
-db.connect()
-db.create_tables([ADSBInfo], safe=True)
+# db.connect()
+# db.create_tables([ADSBInfo], safe=True)
