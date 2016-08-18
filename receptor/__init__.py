@@ -1,14 +1,10 @@
-import logging as log
+import logging.handlers
 import os
-
-from network.dataInput import DataInput
-
 
 from network.dataUploader import DataUploader
 
 
-from config import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT, DATA_INPUT_HOST, DATA_INPUT_PORT, \
-    DATA_INPUT_ENABLED, SERVER_HOST, LOG_DIR
+from config import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT, SERVER_HOST, LOG_DIR
 from network.dataOutput import DataOutput
 
 
@@ -18,14 +14,19 @@ from receptor.microADSB import MicroADSB
 
 from pyModeS import adsb
 
-log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
+log = logging.getLogger("receptor")
+log.setLevel(logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+handler = logging.handlers.RotatingFileHandler(
+    os.path.join(LOG_DIR, "receptor.log"), maxBytes=4294967296, backupCount=6)
+handler.setFormatter(formatter)
+log.addHandler(handler)
 
 __running = False
 __RAW_BUFFER = {}
 __DATA_UPLOADER = DataUploader(serverHost=SERVER_HOST)
-__MICRO_ADSB = MicroADSB()
+__MICRO_ADSB = MicroADSB(autoReconnect=True)
 __DATA_OUTPUT = DataOutput(DATA_OUTPUT_HOST, DATA_OUTPUT_PORT)
-__DATA_INPUT = DataInput(DATA_INPUT_HOST, DATA_INPUT_PORT)
 
 
 def onOpen(err):
@@ -41,6 +42,10 @@ def onClose(err):
     else:
         log.info("Receptor close: closed!")
 
+
+def onErr(err):
+    if err:
+        log.error("Receptor error: %s" % str(err))
 
 def onMessage(data):
     if data:
@@ -66,9 +71,11 @@ def onMessage(data):
             log.info("Invalid Raw Message Received: %s" % str(rawData.frame))
 
 
-def onADSBInfo(info):
-    __DATA_UPLOADER.addADSBInfo(info)
-    # log.info("Complete Message Received from ADSBHub.com: %s" % str(info))
+def onUploaderStart():
+    log.info("Uploader started!")
+
+def onUploaderStop():
+    log.info("Uploader stoped!")
 
 
 def start():
@@ -81,16 +88,13 @@ def start():
     __MICRO_ADSB.open()
 
     global __DATA_UPLOADER
+    __DATA_UPLOADER.onStart = onUploaderStart
+    __DATA_UPLOADER.onStop = onUploaderStop
     __DATA_UPLOADER.start()
 
     if DATA_OUTPUT_ENABLED:
         global __DATA_OUTPUT
         __DATA_OUTPUT.start()
-
-    if DATA_INPUT_ENABLED:
-        global __DATA_INPUT
-        __DATA_INPUT.onADSBInfoReceived = onADSBInfo
-        __DATA_INPUT.connect()
 
     try:
         __running = True
@@ -101,7 +105,6 @@ def start():
 
 def stop():
     global __running
-
     __running = False
 
 
@@ -112,5 +115,4 @@ def __stop():
     __MICRO_ADSB.close()
     __DATA_UPLOADER.stop()
     __DATA_OUTPUT.stop()
-    __DATA_INPUT.disconnect()
     __MAP_BUFFER = None

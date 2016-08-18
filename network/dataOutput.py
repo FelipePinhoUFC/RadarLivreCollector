@@ -31,7 +31,7 @@ class DataOutput(AsyncServerSocket):
 
     def onClienteConnected(self, clientAddress):
         log.info("DataOutput: connected with: %s" % str(clientAddress))
-        msgs = open("msg.txt").read().split("\n")
+        msgs = open("tests/msg.txt").read().split("\n")
         index = 0
         while self.isListening():
 

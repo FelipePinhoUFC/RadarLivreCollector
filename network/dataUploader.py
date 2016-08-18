@@ -2,8 +2,6 @@ import logging as log
 
 from multiprocessing import RLock
 import os
-log.getLogger("requests").setLevel(log.WARNING)
-log.getLogger("urllib3").setLevel(log.WARNING)
 
 from time import sleep
 
@@ -36,6 +34,7 @@ class DataUploader(Thread):
 
 
     def run(self):
+        self.onStart()
         self.__running = True
 
         timeCount = 0
@@ -104,3 +103,6 @@ class DataUploader(Thread):
 
     def onStop(self):
         log.info("DataUploader: Stoped!")
+
+    def onStart(self):
+        log.info("DataUploader: Started!")

@@ -60,7 +60,7 @@ class MessageBuffer():
         return self.dataId and self.dataPositionEven and self.dataPositionOdd and self.dataVelocity
 
     def __repr__(self):
-        return "MsgBuff: [ic=%s, di=%d, do=%d, de=%d, dv=%d]" % (self.icao, len(self.dataId), len(self.dataPositionEven), len(self.dataPositionOdd), len(self.dataVelocity))
+        return "MsgBuff: [ic=%s, di=%d, do=%d, de=%d, dv=%d]" % (self.icao, self.dataId), self.dataPositionEven, self.dataPositionOdd, len(self.dataVelocity)
 
 
 class ADSBInfo(Model):

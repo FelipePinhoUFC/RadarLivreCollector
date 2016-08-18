@@ -160,24 +160,33 @@ class ClientSocket():
     __host = None
     __port = None
     __running = False
+    __autoReconnect = False
 
-    def __init__(self, host="127.0.0.1", port=7685):
+    def __init__(self, host="127.0.0.1", port=7685, autoReconnect=False):
         self.__host = host
         self.__port = port
+        self.__autoReconnect=autoReconnect
 
     def __setRunning(self, running):
         self.__running = running
 
     def connect(self):
-        try:
-            self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.__socket.connect((self.__host, self.__port))
-            self.__setRunning(True)
-            task = AsyncTask(self.__handleConnection)
-            task.start()
-        except Exception as err:
-            log.error("Client Socket: %s" % str(err))
-            return
+        self.__setRunning(True)
+        while self.__running:
+            try:
+                self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.__socket.connect((self.__host, self.__port))
+                task = AsyncTask(self.__handleConnection)
+                task.start()
+                break
+            except Exception as err:
+                log.error("Client Socket: %s" % str(err))
+
+            if not self.__autoReconnect:
+                break
+            else:
+                log.info("Client Socket: reconnecting...")
+                sleep(3)
 
     def __handleConnection(self):
         self.onConnected()
