@@ -67,7 +67,7 @@ class DataUploader(Thread):
         log.info("DataUploader: Sending hello to server...")
         try:
             response = requests.put("http://%s/api/collector/%s/" % (self.__serverHost, COLLECTOR_ID),
-                                    json={"id": COLLECTOR_ID}, auth=(LOGIN, PASSWORD))
+                                    headers={"Content-Type":"application/json"}, json={"id": COLLECTOR_ID}, auth=(LOGIN, PASSWORD))
             if response.status_code >= 400:
                 log.warning("DataUploader: %d: %s" % (response.status_code, str(response.json())))
         except Exception as err:
