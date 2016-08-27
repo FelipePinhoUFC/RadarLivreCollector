@@ -4,7 +4,7 @@ from network.dataInput import DataInput
 from network.dataUploader import DataUploader
 
 __DATA_INPUT = DataInput(host="127.0.0.1", port=30004, autoReconnect=True)
-__UPLOADER = DataUploader(serverHost="localhost:8000")
+__UPLOADER = DataUploader(serverHost="www.radarlivre.com")
 
 @atexit.register
 def onExit():

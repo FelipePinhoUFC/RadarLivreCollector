@@ -1,5 +1,4 @@
 SERVER_HOST = "200.129.38.153"
-SERVER_HOST = "localhost:8000"
 
 LOGIN = "root"
 PASSWORD = "root7685"
@@ -23,7 +22,7 @@ COLLECTOR_ADDRESS = '/dev/ttyACM0'
 # 10 seconds. After this time, the not sent messages will be deleteds
 MAX_MESSAGE_AGE = 60 * 1000
 
-DATA_OUTPUT_ENABLED = False
+DATA_OUTPUT_ENABLED = True
 DATA_OUTPUT_HOST = "127.0.0.1"
 DATA_OUTPUT_PORT = 30003
 
