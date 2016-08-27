@@ -40,6 +40,7 @@ class MessageBuffer():
             setattr(self, k, v)
 
     def addRawData(self, rawData):
+        self._checkDataAge()
         type = adsb.typecode(rawData.frame[1:29])
         if type >= 1 and type <= 4:
             self.dataId = []
@@ -47,16 +48,19 @@ class MessageBuffer():
         elif type >= 9 and type <= 18:
             flag = adsb.oe_flag(rawData.frame[1:29])
             if flag == 0:
+                self.dataPositionEven = []
                 self.dataPositionEven.append(rawData)
                 self.dataPositionEven.sort()
             else:
+                self.dataPositionOdd = []
                 self.dataPositionOdd.append(rawData)
                 self.dataPositionOdd.sort()
         elif type == 19:
             self.dataVelocity = []
             self.dataVelocity.append(rawData)
 
-    def checkDataAge(self):
+
+    def _checkDataAge(self):
         for i in range(0, len(self.dataPositionEven)):
             if self.dataPositionEven[i].timestamp < systemTimestamp() - MAX_MESSAGE_AGE:
                 del self.dataPositionEven[i]
