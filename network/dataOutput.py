@@ -4,7 +4,7 @@ import os
 import threading
 from time import sleep
 
-from config import LOG_DIR
+from receptor.rootConfig import LOG_DIR
 from network import AsyncServerSocket
 
 log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))

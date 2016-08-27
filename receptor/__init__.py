@@ -4,7 +4,7 @@ import os
 from network.dataUploader import DataUploader
 
 
-from config import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT, SERVER_HOST, LOG_DIR
+from receptor.rootConfig import DATA_OUTPUT_ENABLED, DATA_OUTPUT_HOST, DATA_OUTPUT_PORT, SERVER_HOST, LOG_DIR
 from network.dataOutput import DataOutput
 
 
@@ -63,9 +63,10 @@ def onMessage(data):
             __RAW_BUFFER[icao].addRawData(rawData)
 
             if __RAW_BUFFER[icao].isComplete():
-                adsbInfo = ADSBInfo.createFromMessageBuffer(__RAW_BUFFER[icao])
-                __DATA_UPLOADER.addADSBInfo(adsbInfo)
                 log.info("Complete Message Received: %s" % str(__RAW_BUFFER[icao]))
+                adsbInfo = ADSBInfo.createFromMessageBuffer(__RAW_BUFFER[icao])
+                log.info("Processed Complete Message: %s" % str(__RAW_BUFFER[icao]))
+                __DATA_UPLOADER.addADSBInfo(adsbInfo)
 
         else:
             log.info("Invalid Raw Message Received: %s" % str(rawData.frame))

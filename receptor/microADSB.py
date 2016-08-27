@@ -8,7 +8,7 @@ from time import sleep
 
 import logging as log
 
-from config import LOG_DIR
+from receptor.rootConfig import LOG_DIR
 
 log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 

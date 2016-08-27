@@ -1,10 +1,10 @@
 import os
 
 from time import time as systemTimestamp
-from config import DATABASE_DIR, COLLECTOR_ID
+from receptor.rootConfig import DATABASE_DIR, COLLECTOR_ID
 from peewee.peewee import Model, CharField, DecimalField, BigIntegerField, SqliteDatabase
 from pyModeS import adsb
-
+from receptor.rootConfig import MAX_MESSAGE_AGE
 
 db = SqliteDatabase(os.path.join(DATABASE_DIR, "receptor.db"))
 
@@ -42,25 +42,46 @@ class MessageBuffer():
     def addRawData(self, rawData):
         type = adsb.typecode(rawData.frame[1:29])
         if type >= 1 and type <= 4:
+            self.dataId = []
             self.dataId.append(rawData)
-            self.dataId.sort(reverse=True)
         elif type >= 9 and type <= 18:
             flag = adsb.oe_flag(rawData.frame[1:29])
             if flag == 0:
                 self.dataPositionEven.append(rawData)
-                self.dataPositionEven.sort(reverse=True)
+                self.dataPositionEven.sort()
             else:
                 self.dataPositionOdd.append(rawData)
-                self.dataPositionOdd.sort(reverse=True)
+                self.dataPositionOdd.sort()
         elif type == 19:
+            self.dataVelocity = []
             self.dataVelocity.append(rawData)
-            self.dataVelocity.sort(reverse=True)
+
+    def checkDataAge(self):
+        for i in range(0, len(self.dataPositionEven)):
+            if self.dataPositionEven[i].timestamp < systemTimestamp() - MAX_MESSAGE_AGE:
+                del self.dataPositionEven[i]
+                i -= 1
+
+        for i in range(0, len(self.dataPositionOdd)):
+            if self.dataPositionOdd[i].timestamp < systemTimestamp() - MAX_MESSAGE_AGE:
+                del self.dataPositionOdd[i]
+                i -= 1
+
+        for i in range(0, len(self.dataVelocity)):
+            if self.dataVelocity[i].timestamp < systemTimestamp() - MAX_MESSAGE_AGE:
+                del self.dataVelocity[i]
+                i -= 1
+
+    def clearPositionMessages(self):
+        del self.dataPositionEven[0]
+        del self.dataPositionOdd[0]
+        del self.dataVelocity[0]
 
     def isComplete(self):
         return self.dataId and self.dataPositionEven and self.dataPositionOdd and self.dataVelocity
 
     def __repr__(self):
-        return "MsgBuff: [ic=%s, di=%s, do=%s, de=%s, dv=%s]" % (self.icao, str(self.dataId), str(self.dataPositionEven), str(self.dataPositionOdd), str(self.dataVelocity))
+        return "MsgBuff: [ic=%s, di=%d, do=%d, de=%d, dv=%d]" % (self.icao, len(self.dataId), len(self.dataPositionEven), len(self.dataPositionOdd), len(self.dataVelocity))
 
 
 class ADSBInfo(Model):
@@ -96,6 +117,7 @@ class ADSBInfo(Model):
 
     @staticmethod
     def createFromMessageBuffer(messageBuffer):
+        info = None
         if messageBuffer.isComplete():
             latLng = adsb.position(messageBuffer.dataPositionEven[0].frame[1:29],
                                    messageBuffer.dataPositionOdd[0].frame[1:29],
@@ -106,7 +128,7 @@ class ADSBInfo(Model):
                 info = ADSBInfo(
                     collector=COLLECTOR_ID,
                     modeSCode=adsb.icao(messageBuffer.dataId[0].frame[1:29]),
-                    callsign=adsb.callsign(messageBuffer.dataId[0].frame[1:29]),
+                    callsign=adsb.callsign(messageBuffer.dataId[0].frame[1:29]).replace("_", ""),
                     latitude=latLng[0],
                     longitude=latLng[1],
                     altitude=adsb.altitude(messageBuffer.dataPositionEven[0].frame[1:29]),
@@ -121,13 +143,8 @@ class ADSBInfo(Model):
                     timestampSent=int(systemTimestamp() * 1000)
                 )
 
-                # del messageBuffer.dataId[0]
-                del messageBuffer.dataPositionEven[0]
-                del messageBuffer.dataPositionOdd[0]
-                # del messageBuffer.dataVelocity[0]
-
-                return info
-        return None
+        messageBuffer.clearPositionMessages()
+        return info
 
     def serialize(self):
         return {

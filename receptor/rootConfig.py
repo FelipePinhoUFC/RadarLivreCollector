@@ -21,3 +21,15 @@ DATA_OUTPUT_HOST = "127.0.0.1"
 DATA_OUTPUT_PORT = 30003
 
 LOCAL_DATA_ENABLED = False
+
+try:
+    import config
+    attrs = [item for item in dir(config) if not item.startswith("__")]
+
+    for attr in attrs:
+        try:
+            globals()[attr] = getattr(config, attr)
+        except Exception as err:
+            print "Erro:", err
+except:
+    pass

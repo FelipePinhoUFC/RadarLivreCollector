@@ -9,7 +9,7 @@ from threading import Thread
 
 import requests
 
-from config import LOGIN, PASSWORD, COLLECTOR_ID, LOCAL_DATA_ENABLED, LOG_DIR
+from receptor.rootConfig import LOGIN, PASSWORD, COLLECTOR_ID, LOCAL_DATA_ENABLED, LOG_DIR
 
 log.basicConfig(level=log.DEBUG, filemode="w", filename=os.path.join(LOG_DIR, "receptor.log"))
 
@@ -25,7 +25,7 @@ class DataUploader(Thread):
     bufferSizeLimit = None
 
 
-    def __init__(self, serverHost="www.radarlivre.com", sendHelloInterval=10000, sendADSBInfoInterval=500, bufferSizeLimit=2048):
+    def __init__(self, serverHost="www.radarlivre.com", sendHelloInterval=60000, sendADSBInfoInterval=500, bufferSizeLimit=2048):
         Thread.__init__(self)
         self.__serverHost = serverHost
         self.sendHelloInterval = sendHelloInterval

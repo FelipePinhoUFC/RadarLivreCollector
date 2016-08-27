@@ -1,7 +1,7 @@
 import logging as log
 import os
 
-from config import COLLECTOR_ID, LOG_DIR
+from receptor.rootConfig import COLLECTOR_ID, LOG_DIR
 from models import ADSBInfo
 from time import time as systemTimestamp
 
