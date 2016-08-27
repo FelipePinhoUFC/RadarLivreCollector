@@ -24,7 +24,7 @@ class RawData():
         return self.timestamp.__cmp__(other.timestamp)
 
     def __repr__(self):
-        return "RawData: [tt=%d, dl=%d, fm=%s]" % self.timestamp, self.downlinkformat, self.frame
+        return "RawData: [tt=%d, dl=%d, fm=%s]" % (self.timestamp, self.downlinkformat, self.frame)
 
 
 class MessageBuffer():
