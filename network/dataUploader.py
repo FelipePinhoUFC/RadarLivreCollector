@@ -59,7 +59,7 @@ class DataUploader(Thread):
             del self.__adsbInfoBuffer[0]
         self.__lockBuffer.release()
 
-        log.info("DataUploader: Adding adsbInfo: %d" % len(self.__adsbInfoBuffer))
+        # log.info("DataUploader: Adding adsbInfo: %d" % len(self.__adsbInfoBuffer))
 
 
 
@@ -67,7 +67,8 @@ class DataUploader(Thread):
         log.info("DataUploader: Sending hello to server...")
         try:
             response = requests.put("http://%s/api/collector/%s/" % (self.__serverHost, COLLECTOR_ID),
-                                    json={"id": COLLECTOR_ID}, auth=(LOGIN, PASSWORD))
+                json={"id": COLLECTOR_ID}, auth=(LOGIN, PASSWORD))
+
             if response.status_code >= 400:
                 log.warning("DataUploader: %d: %s" % (response.status_code, str(response.json())))
         except Exception as err:
@@ -85,7 +86,9 @@ class DataUploader(Thread):
                 json.append(info.serialize())
 
             try:
-                response = requests.post("http://%s/api/adsb_info/" % str(self.__serverHost), json=json, auth=(LOGIN, PASSWORD))
+                response = requests.post("http://%s/api/adsb_info/" % str(self.__serverHost),
+                    json=json, auth=(LOGIN, PASSWORD))
+                
                 if response.status_code >= 400:
                     log.warning("DataUploader: %d: %s: %s" % (response.status_code, str(response.json()), json))
                 else:
