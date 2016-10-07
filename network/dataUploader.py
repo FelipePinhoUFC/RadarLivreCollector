@@ -87,15 +87,18 @@ class DataUploader(Thread):
 
             try:
                 response = requests.post("http://%s/api/adsb_info/" % str(self.__serverHost),
-                    json=json, auth=(LOGIN, PASSWORD))
+                    json=json, auth=(LOGIN, PASSWORD),
+                    timeout=30)
                 
                 if response.status_code >= 400:
-                    log.warning("DataUploader: %d: %s: %s" % (response.status_code, str(response.json()), json))
+                    log.warning("DataUploader: %d: %s" % (response.status_code, str(response.json())))
                 else:
                     del self.__adsbInfoBuffer[:]
 
             except Exception as err:
                 log.error("DataUploader: %s" % str(err))
+
+            log.info("DataUploader: Sending data to server: Done!")
 
         self.__lockBuffer.release()
 

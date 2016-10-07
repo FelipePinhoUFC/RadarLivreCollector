@@ -152,7 +152,7 @@ class ADSBInfo(Model):
 
     def serialize(self):
         return {
-            "collector": self.collector, 
+            "collectorKey": self.collector, 
     
             "modeSCode": self.modeSCode, 
             "callsign": self.callsign, 
