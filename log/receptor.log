@@ -1,0 +1,476 @@
+2016-12-18 15:06:25,516 - receptor - INFO - Starting receptor...
+2016-12-18 15:06:25,516 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:25,521 - receptor - INFO - Uploader started!
+2016-12-18 15:06:28,519 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:31,522 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:34,526 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:37,530 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:39,657 - receptor - INFO - Stopping receptor...
+2016-12-18 15:06:39,658 - receptor - INFO - Uploader stoped!
+2016-12-18 15:06:40,534 - receptor - INFO - Receptor close: closed!
+2016-12-18 15:06:45,951 - receptor - INFO - Starting receptor...
+2016-12-18 15:06:45,952 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:45,957 - receptor - INFO - Uploader started!
+2016-12-18 15:06:48,954 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:51,957 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:54,963 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:06:57,141 - receptor - INFO - Stopping receptor...
+2016-12-18 15:06:57,142 - receptor - INFO - Uploader stoped!
+2016-12-18 15:06:57,965 - receptor - INFO - Receptor close: closed!
+2016-12-18 15:08:12,483 - receptor - INFO - Starting receptor...
+2016-12-18 15:08:12,483 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:08:12,493 - receptor - INFO - Uploader started!
+2016-12-18 15:08:15,487 - receptor - ERROR - Receptor open: [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2016-12-18 15:08:16,811 - receptor - INFO - Stopping receptor...
+2016-12-18 15:08:16,812 - receptor - INFO - Uploader stoped!
+2016-12-18 15:08:18,491 - receptor - INFO - Receptor close: closed!
+2016-12-18 15:14:50,896 - receptor - INFO - Starting receptor...
+2016-12-18 15:14:50,901 - receptor - INFO - Uploader started!
+2016-12-18 15:17:14,506 - receptor - INFO - Stopping receptor...
+2016-12-18 15:17:14,589 - receptor - INFO - Uploader stoped!
+2016-12-18 15:17:17,511 - receptor - INFO - Receptor close: closed!
+2016-12-18 15:17:19,063 - receptor - INFO - Starting receptor...
+2016-12-18 15:17:19,069 - receptor - INFO - Uploader started!
+2016-12-18 15:17:19,516 - receptor - INFO - Receptor open: opened!
+2016-12-18 15:17:30,468 - receptor - INFO - Invalid Raw Message Received: *EF3A786A4C178301A41C000014A4;
+2016-12-18 15:17:54,992 - receptor - INFO - Invalid Raw Message Received: *A5909405A64022446CF0D1935A00;
+2016-12-18 15:17:55,235 - receptor - INFO - Invalid Raw Message Received: *F737DE52B75F5E2E0A4748172550;
+2016-12-18 15:18:00,857 - receptor - INFO - Invalid Raw Message Received: *FF2D006D08D50512CE440B212A51;
+2016-12-18 15:18:03,511 - receptor - INFO - Invalid Raw Message Received: *9BA6DE85232A5D8020679387C293;
+2016-12-18 15:18:54,715 - receptor - INFO - Invalid Raw Message Received: *D041850087A9B5139CC1F1FB641B;
+2016-12-18 15:19:04,615 - receptor - INFO - Invalid Raw Message Received: *FA85181014382E5C1721083A402A;
+2016-12-18 15:19:04,763 - receptor - INFO - Raw Message Received: *8E856D16EDFBA79D180A950E8CC7;
+2016-12-18 15:19:06,265 - receptor - INFO - Invalid Raw Message Received: *FF6A1C251890436081058C93DA98;
+2016-12-18 15:19:06,670 - receptor - INFO - Invalid Raw Message Received: *FA86209642CAE6581F3543903079;
+2016-12-18 15:19:09,319 - receptor - INFO - Invalid Raw Message Received: *FF6885AC4831A48053A148265385;
+2016-12-18 15:19:10,000 - receptor - INFO - Invalid Raw Message Received: *FFC577A278812363E338D4ACCE20;
+2016-12-18 15:19:11,743 - receptor - INFO - Invalid Raw Message Received: *D617756F651611A8545A41C7A44A;
+2016-12-18 15:19:11,874 - receptor - INFO - Invalid Raw Message Received: *FF8EED19825A9CEA14048CE0A848;
+2016-12-18 15:19:25,337 - receptor - INFO - Invalid Raw Message Received: *FE10633041A9A68610FF0680C7B1;
+2016-12-18 15:19:26,574 - receptor - INFO - Invalid Raw Message Received: *E9F00027325DA90D47802DFE149D;
+2016-12-18 15:19:26,785 - receptor - INFO - Invalid Raw Message Received: *F9822475498666468B2F814D403C;
+2016-12-18 15:19:30,556 - receptor - INFO - Raw Message Received: *8A6F12C81420D501AE265F3460B4;
+2016-12-18 15:19:31,122 - receptor - INFO - Invalid Raw Message Received: *FD049058298EC0EC8908854FFD49;
+2016-12-18 15:19:31,664 - receptor - INFO - Invalid Raw Message Received: *EE612A6857B8BC86A43CF37F2C5F;
+2016-12-18 15:19:37,494 - receptor - INFO - Invalid Raw Message Received: *F6506AD960E021A810441332089A;
+2016-12-18 15:19:37,833 - receptor - INFO - Invalid Raw Message Received: *FFA46A16C196A905C5E925645901;
+2016-12-18 15:19:38,610 - receptor - INFO - Invalid Raw Message Received: *FFAEC7E5581B32AB5948EA5AAC90;
+2016-12-18 15:19:40,008 - receptor - INFO - Invalid Raw Message Received: *DFCA669A748DBF8368607B814321;
+2016-12-18 15:27:34,367 - receptor - INFO - Stopping receptor...
+2016-12-18 15:27:34,508 - receptor - INFO - Uploader stoped!
+2016-12-18 15:27:37,369 - receptor - INFO - Receptor close: closed!
+2016-12-18 15:27:47,368 - receptor - INFO - Starting receptor...
+2016-12-18 15:27:47,373 - receptor - INFO - Uploader started!
+2016-12-18 15:27:48,003 - receptor - INFO - Receptor open: opened!
+2016-12-18 15:33:41,584 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:01,316 - receptor - INFO - Raw Message Received: *8DE485B099106D3548983BD35E8B;
+2016-12-18 15:34:08,138 - receptor - INFO - Raw Message Received: *8DE485B0588350AB712F6F59FB0B;
+2016-12-18 15:34:08,248 - receptor - INFO - Raw Message Received: *8DE485B099106D3528943AAB74F9;
+2016-12-18 15:34:09,746 - receptor - INFO - Raw Message Received: *8DE485B099106D3528983B1CDAF0;
+2016-12-18 15:34:10,683 - receptor - INFO - Raw Message Received: *8DE485B0588310AC652F8DA7F72D;
+2016-12-18 15:34:11,065 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:12,718 - receptor - INFO - Raw Message Received: *8DE485B05881E4BB37673B7D7954;
+2016-12-18 15:34:12,945 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:13,218 - receptor - INFO - Invalid Raw Message Received: *02E1901D7DBF2E;
+2016-12-18 15:34:14,844 - receptor - INFO - Raw Message Received: *8DE485B05881B0ADB92FB898DE2E;
+2016-12-18 15:34:14,953 - receptor - INFO - Raw Message Received: *8DE485B099106D3508983AA652D0;
+2016-12-18 15:34:15,036 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:15,381 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:34:15,381 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:15,382 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:15,826 - receptor - INFO - Raw Message Received: *8DE485B0588190AE112FC3B960E1;
+2016-12-18 15:34:16,869 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:17,007 - receptor - INFO - Raw Message Received: *8DE485B0588180AE672FCDB7A1AD;
+2016-12-18 15:34:19,066 - receptor - INFO - Raw Message Received: *8DE485B0588154BD41677C6C7A3E;
+2016-12-18 15:34:19,186 - receptor - INFO - Raw Message Received: *8DE485B099106D34E894391F9D47;
+2016-12-18 15:34:19,187 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:19,187 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:19,268 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:20,075 - receptor - INFO - Raw Message Received: *8DE485B0588134BD956787BF4523;
+2016-12-18 15:34:20,181 - receptor - INFO - Raw Message Received: *8DE485B099106C34E894391C9789;
+2016-12-18 15:34:20,271 - receptor - INFO - Invalid Raw Message Received: *02E190137DEB6F;
+2016-12-18 15:34:25,166 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:25,273 - receptor - INFO - Raw Message Received: *8FE485B099106C34C89439E90950;
+2016-12-18 15:34:25,434 - receptor - INFO - Raw Message Received: *8FE485B020501373CB6C207A5F08;
+2016-12-18 15:34:26,237 - receptor - INFO - Raw Message Received: *8FE485B0587FA4BF9F67C8DC0A88;
+2016-12-18 15:34:26,355 - receptor - INFO - Raw Message Received: *8FE485B099106C34C8943816FD59;
+2016-12-18 15:34:27,186 - receptor - INFO - Raw Message Received: *8FE485B099106C34C8943816FD59;
+2016-12-18 15:34:27,412 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:28,373 - receptor - INFO - Raw Message Received: *8FE485B0587F70B2353047E81F43;
+2016-12-18 15:34:28,373 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:28,374 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:28,483 - receptor - INFO - Raw Message Received: *8FE485B099106C34C8943816FD59;
+2016-12-18 15:34:29,278 - receptor - INFO - Raw Message Received: *8FE481B099106C34C8943816FD59;
+2016-12-18 15:34:29,980 - receptor - INFO - Raw Message Received: *8FE485B099106C34C8943816FD59;
+2016-12-18 15:34:30,518 - receptor - INFO - Raw Message Received: *8FE485B0587F44C10F67F6ABC0ED;
+2016-12-18 15:34:30,626 - receptor - INFO - Raw Message Received: *8FE485B099106C34A89438D97922;
+2016-12-18 15:34:30,788 - receptor - INFO - Raw Message Received: *8FE485B020501373CB6C207A5F08;
+2016-12-18 15:34:31,305 - receptor - INFO - Raw Message Received: *8FE485B0587F30B3233065F131AD;
+2016-12-18 15:34:31,306 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:31,306 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:31,426 - receptor - INFO - Raw Message Received: *8FE485B099106C34A89438D97922;
+2016-12-18 15:34:31,580 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:31,687 - receptor - INFO - Raw Message Received: *8FE485B0587F24C1616800DA393D;
+2016-12-18 15:34:32,277 - receptor - INFO - Raw Message Received: *8FE485B0587F24C1976807F1D459;
+2016-12-18 15:34:32,441 - receptor - INFO - Raw Message Received: *8FE485B099106C34A89438D97922;
+2016-12-18 15:34:32,550 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:33,331 - receptor - INFO - Raw Message Received: *8FE485B0587F00B3E1307C24F44D;
+2016-12-18 15:34:33,331 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:33,332 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:33,438 - receptor - INFO - Raw Message Received: *8FE485B099106C34A89438D97922;
+2016-12-18 15:34:34,269 - receptor - INFO - Raw Message Received: *8FE485B0587DF0B43530877BBE2D;
+2016-12-18 15:34:34,447 - receptor - INFO - Raw Message Received: *8FE485B099106C34A8943726D96A;
+2016-12-18 15:34:35,206 - receptor - INFO - Raw Message Received: *8FE485B0587DD4C2A3682820B6ED;
+2016-12-18 15:34:35,206 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:35,207 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:35,499 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:35,787 - receptor - INFO - Raw Message Received: *8FE485B020501373CB6C207A5F08;
+2016-12-18 15:34:36,143 - receptor - INFO - Raw Message Received: *8FE485B099106C348890375B9343;
+2016-12-18 15:34:36,391 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:37,196 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:38,426 - receptor - INFO - Raw Message Received: *8FE485B0587D94C39D6847EE7911;
+2016-12-18 15:34:38,571 - receptor - INFO - Raw Message Received: *8FE485B099106C3488943763A543;
+2016-12-18 15:34:39,133 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:39,381 - receptor - INFO - Raw Message Received: *8FE485B099106C3488943763A543;
+2016-12-18 15:34:39,879 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:40,315 - receptor - INFO - Raw Message Received: *8FE485B0587D60B63330C7490184;
+2016-12-18 15:34:40,316 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:40,316 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:40,489 - receptor - INFO - Raw Message Received: *8FE485B099106C348898372BFF43;
+2016-12-18 15:34:41,390 - receptor - INFO - Raw Message Received: *8FE485B0587D40B68930D12FAAAF;
+2016-12-18 15:34:41,542 - receptor - INFO - Raw Message Received: *8FE485B099106C34689836F18B9C;
+2016-12-18 15:34:42,331 - receptor - INFO - Raw Message Received: *8FE485B0587D30B6DF30DC381598;
+2016-12-18 15:34:42,437 - receptor - INFO - Raw Message Received: *8FE485B099106C346898370E7F95;
+2016-12-18 15:34:42,967 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:34:43,392 - receptor - INFO - Raw Message Received: *8FE485B0587D10B73130E614274C;
+2016-12-18 15:34:43,499 - receptor - INFO - Raw Message Received: *8FE485B099106B34689836F8BFF6;
+2016-12-18 15:34:43,794 - receptor - INFO - Raw Message Received: *8DE485B0587D10B75330EA70A11F;
+2016-12-18 15:34:43,936 - receptor - INFO - Raw Message Received: *8DE485B099106B34689837B7A90F;
+2016-12-18 15:34:44,204 - receptor - INFO - Raw Message Received: *8DE485B0587D04C57F688429EE04;
+2016-12-18 15:34:44,205 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:44,205 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:44,319 - receptor - INFO - Raw Message Received: *8DE485B099106B34689837B7A90F;
+2016-12-18 15:34:44,980 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:45,403 - receptor - INFO - Raw Message Received: *8DE485B0587BE0B7DD30FC0F2717;
+2016-12-18 15:34:45,516 - receptor - INFO - Raw Message Received: *8DE485B099106B34689836485D06;
+2016-12-18 15:34:45,808 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:34:45,918 - receptor - INFO - Raw Message Received: *8DE485B099106B34689836485D06;
+2016-12-18 15:34:46,343 - receptor - INFO - Raw Message Received: *8DE485B099106B34689837B7A90F;
+2016-12-18 15:34:47,295 - receptor - INFO - Raw Message Received: *8DE485B099106B34689436000706;
+2016-12-18 15:34:48,351 - receptor - INFO - Raw Message Received: *8DE485B099106B34489436457B2F;
+2016-12-18 15:34:49,051 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:49,423 - receptor - INFO - Raw Message Received: *8DE485B0587B84C73368BAE831AB;
+2016-12-18 15:34:49,424 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:49,424 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:49,552 - receptor - INFO - Raw Message Received: *8DE485B099106B34489436457B2F;
+2016-12-18 15:34:49,938 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:50,281 - receptor - INFO - Raw Message Received: *8DE485B0587B74C78568C45DD759;
+2016-12-18 15:34:50,914 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:34:51,022 - receptor - INFO - Raw Message Received: *8DE485B0587B60B9B73137623BCA;
+2016-12-18 15:34:51,023 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:51,023 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:51,132 - receptor - INFO - Raw Message Received: *8DE485B099106B34489435BA933D;
+2016-12-18 15:34:51,436 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:51,532 - receptor - INFO - Invalid Raw Message Received: *02E18F36397260;
+2016-12-18 15:34:51,689 - receptor - INFO - Raw Message Received: *8DE485B0587B64C7DB68CF87040B;
+2016-12-18 15:34:51,936 - receptor - INFO - Raw Message Received: *8DE485B0587B54C7FB68D3932580;
+2016-12-18 15:34:52,063 - receptor - INFO - Raw Message Received: *8DE485B099106B34489436457B2F;
+2016-12-18 15:34:52,300 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:52,456 - receptor - INFO - Raw Message Received: *8DE485B0587B44C81D68D7D9242E;
+2016-12-18 15:34:53,063 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:53,310 - receptor - INFO - Raw Message Received: *8DE485B099106A344894364671E1;
+2016-12-18 15:34:55,221 - receptor - INFO - Raw Message Received: *8DE485B0587B00BB1B316363FB2A;
+2016-12-18 15:34:55,221 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:55,222 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:55,453 - receptor - INFO - Raw Message Received: *8DE485B099906A34289435E7DAF7;
+2016-12-18 15:34:55,556 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:55,799 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:34:56,214 - receptor - INFO - Raw Message Received: *8DE485B05879F4C96769005E7544;
+2016-12-18 15:34:56,385 - receptor - INFO - Raw Message Received: *8DE485B099906A34289435E7DAF7;
+2016-12-18 15:34:57,146 - receptor - INFO - Raw Message Received: *8DE485B05879D0BBC1317736A5E5;
+2016-12-18 15:34:57,147 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:34:57,147 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:34:57,338 - receptor - INFO - Raw Message Received: *8DE485B099906A34289435E7DAF7;
+2016-12-18 15:34:57,435 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:34:59,174 - receptor - INFO - Raw Message Received: *8DE485B05879A0BC6D318C7AA6C2;
+2016-12-18 15:34:59,321 - receptor - INFO - Raw Message Received: *8DE485B099906A34289435E7DAF7;
+2016-12-18 15:34:59,933 - receptor - INFO - Invalid Raw Message Received: *02E18F19C71398;
+2016-12-18 15:35:00,349 - receptor - INFO - Raw Message Received: *8DE485B0587990BCBD31969667A2;
+2016-12-18 15:35:00,493 - receptor - INFO - Raw Message Received: *8DE485B099906A34289435E7DAF7;
+2016-12-18 15:35:02,376 - receptor - INFO - Raw Message Received: *8DE485B099906A34089435A2A6DE;
+2016-12-18 15:35:02,469 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:02,769 - receptor - INFO - Raw Message Received: *8DE485B099906A34089435A2A6DE;
+2016-12-18 15:35:03,114 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:03,572 - receptor - INFO - Raw Message Received: *8DE485B0587940BDCB31B80ABA84;
+2016-12-18 15:35:03,727 - receptor - INFO - Raw Message Received: *8DE485B099906934089434584D85;
+2016-12-18 15:35:05,034 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:05,316 - receptor - INFO - Raw Message Received: *8DE485B099906A33E89834E37AB8;
+2016-12-18 15:35:05,944 - receptor - INFO - Invalid Raw Message Received: *02E18F103897FD;
+2016-12-18 15:35:06,532 - receptor - INFO - Raw Message Received: *8DE485B05877F4CCC3696A2852BF;
+2016-12-18 15:35:06,532 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:06,533 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:06,880 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:07,504 - receptor - INFO - Raw Message Received: *8DE485B05877E4CD096973D991C4;
+2016-12-18 15:35:07,649 - receptor - INFO - Raw Message Received: *8DE485B099906A33E89434AB20B8;
+2016-12-18 15:35:08,656 - receptor - INFO - Raw Message Received: *8DE485B05877D0BF8331EE984AC7;
+2016-12-18 15:35:08,661 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:08,662 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:08,817 - receptor - INFO - Raw Message Received: *8DE485B099906A33E89434AB20B8;
+2016-12-18 15:35:08,898 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:09,743 - receptor - INFO - Raw Message Received: *8DE485B05877B0BFE531FAD80594;
+2016-12-18 15:35:09,886 - receptor - INFO - Raw Message Received: *8DE485B099906A33E89434AB20B8;
+2016-12-18 15:35:10,887 - receptor - INFO - Raw Message Received: *8DE485B0587790C03D3205312F58;
+2016-12-18 15:35:11,057 - receptor - INFO - Raw Message Received: *8DE485B099906933E89434AE3FEA;
+2016-12-18 15:35:11,147 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:11,756 - receptor - INFO - Raw Message Received: *8DE485B0587780C08F320F687BD9;
+2016-12-18 15:35:11,914 - receptor - INFO - Raw Message Received: *8DE485B099906933C89034D375C3;
+2016-12-18 15:35:12,241 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:12,422 - receptor - INFO - Raw Message Received: *8DA485B05877744E9369A3A98697;
+2016-12-18 15:35:12,574 - receptor - INFO - Raw Message Received: *8DE485B099906933C894331493E7;
+2016-12-18 15:35:12,833 - receptor - INFO - Raw Message Received: *8DE485B0587764CEC369A9CEFA42;
+2016-12-18 15:35:12,836 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:12,839 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:13,012 - receptor - INFO - Raw Message Received: *8DE485B099106933C89433855498;
+2016-12-18 15:35:13,177 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:14,689 - receptor - INFO - Raw Message Received: *8DE485B0587740C18B322FCD36B7;
+2016-12-18 15:35:14,833 - receptor - INFO - Raw Message Received: *8DE485B099106933C89433855498;
+2016-12-18 15:35:14,916 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:15,892 - receptor - INFO - Raw Message Received: *8DE485B099106933C894347A84BC;
+2016-12-18 15:35:16,035 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:35:16,718 - receptor - INFO - Raw Message Received: *8DE485B099106933A894334AD0E3;
+2016-12-18 15:35:17,269 - receptor - INFO - Raw Message Received: *8DE485B0587704D03169D694A656;
+2016-12-18 15:35:17,271 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:17,271 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:17,423 - receptor - INFO - Raw Message Received: *8DE485B099106933A8903372E6E3;
+2016-12-18 15:35:17,562 - receptor - INFO - Raw Message Received: *8DE485B05875F4D05169DAA707F3;
+2016-12-18 15:35:18,025 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:18,160 - receptor - INFO - Raw Message Received: *8DE485B05875F4D07169DF1DB7E5;
+2016-12-18 15:35:18,639 - receptor - INFO - Raw Message Received: *8DE485B05875E4D0A169E46E1AFC;
+2016-12-18 15:35:18,785 - receptor - INFO - Raw Message Received: *8DE485B099106933A894334AD0E3;
+2016-12-18 15:35:19,060 - receptor - INFO - Raw Message Received: *8DE485B099106933A894334AD0E3;
+2016-12-18 15:35:19,430 - receptor - INFO - Raw Message Received: *8DE485B05875D0C31932601580C2;
+2016-12-18 15:35:19,430 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:19,430 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:20,042 - receptor - INFO - Raw Message Received: *8DE485B05875C0C33D3264573939;
+2016-12-18 15:35:20,243 - receptor - INFO - Raw Message Received: *8DE485B099106933A8903372E6E3;
+2016-12-18 15:35:20,352 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:20,598 - receptor - INFO - Raw Message Received: *8DE485B05875B4D13769F753493E;
+2016-12-18 15:35:20,598 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:20,599 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:20,809 - receptor - INFO - Raw Message Received: *8DE485B099106933A890328D12EA;
+2016-12-18 15:35:21,009 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:35:21,175 - receptor - INFO - Raw Message Received: *8DE485B099106933A8903372E6E3;
+2016-12-18 15:35:21,394 - receptor - INFO - Raw Message Received: *8DE485B099106933A8903372E6E3;
+2016-12-18 15:35:21,947 - receptor - INFO - Raw Message Received: *8DE485B0587594D1B96A078DFD95;
+2016-12-18 15:35:22,156 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:22,645 - receptor - INFO - Raw Message Received: *8DE485B0587580C415327F92DE87;
+2016-12-18 15:35:22,648 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:22,648 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:22,769 - receptor - INFO - Raw Message Received: *8DE485B099106933889032C86EC3;
+2016-12-18 15:35:22,998 - receptor - INFO - Raw Message Received: *8DE485B0587584D20D6A1184FFE5;
+2016-12-18 15:35:23,135 - receptor - INFO - Raw Message Received: *8DE485B099106933889032C86EC3;
+2016-12-18 15:35:23,381 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:24,480 - receptor - INFO - Raw Message Received: *8DE485B0587564D27F6A1F54BA04;
+2016-12-18 15:35:24,641 - receptor - INFO - Raw Message Received: *8DE485B099106833889432F3520D;
+2016-12-18 15:35:25,256 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:25,698 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:35:25,948 - receptor - INFO - Raw Message Received: *8DE485B099106833889432F3520D;
+2016-12-18 15:35:26,633 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:26,861 - receptor - INFO - Raw Message Received: *8DE485B0587530C56532A87B30CA;
+2016-12-18 15:35:26,861 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:26,862 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:27,003 - receptor - INFO - Raw Message Received: *8DE485B099106833889432F3520D;
+2016-12-18 15:35:27,101 - receptor - INFO - Raw Message Received: *8DE485B0587524D3556A3A738FFB;
+2016-12-18 15:35:27,195 - receptor - INFO - Raw Message Received: *8DE485B099106833889432F3520D;
+2016-12-18 15:35:27,389 - receptor - INFO - Raw Message Received: *8DE485B0587510C5B932B3015A4F;
+2016-12-18 15:35:27,392 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:27,392 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:27,877 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:28,321 - receptor - INFO - Raw Message Received: *8DE485B099106933689432D5D815;
+2016-12-18 15:35:29,439 - receptor - INFO - Raw Message Received: *8DE485B05873F0C64D32C557FF63;
+2016-12-18 15:35:29,575 - receptor - INFO - Raw Message Received: *8DE485B0991069336894312A3007;
+2016-12-18 15:35:29,667 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:30,319 - receptor - INFO - Raw Message Received: *8DE485B05873D0C6A132CF4AB90E;
+2016-12-18 15:35:30,449 - receptor - INFO - Raw Message Received: *8DE485B099106933689432D5D815;
+2016-12-18 15:35:30,692 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:30,790 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:35:31,119 - receptor - INFO - Raw Message Received: *8DE485B05873C0C6D332D68C19BA;
+2016-12-18 15:35:31,242 - receptor - INFO - Raw Message Received: *8DE485B099106933689432D5D815;
+2016-12-18 15:35:31,516 - receptor - INFO - Raw Message Received: *8DE485B05873C0C6F332D936C5DB;
+2016-12-18 15:35:31,611 - receptor - INFO - Raw Message Received: *8DE485B0991069334894316F4C2E;
+2016-12-18 15:35:31,686 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:31,917 - receptor - INFO - Raw Message Received: *8DE485B05873B4D4D96A6A641EC5;
+2016-12-18 15:35:31,918 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:31,918 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:32,028 - receptor - INFO - Raw Message Received: *8DE485B09910693348943290A43C;
+2016-12-18 15:35:32,211 - receptor - INFO - Raw Message Received: *8DE485B09910693348943290A43C;
+2016-12-18 15:35:32,732 - receptor - INFO - Raw Message Received: *8DE485B05873A4D52F6A74ABC6AF;
+2016-12-18 15:35:32,837 - receptor - INFO - Raw Message Received: *8DE485B0991069334894316F4C2E;
+2016-12-18 15:35:33,302 - receptor - INFO - Raw Message Received: *8DE485B0587390C79B32EEB0F0D7;
+2016-12-18 15:35:33,303 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:33,303 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:33,419 - receptor - INFO - Raw Message Received: *8DE485B099106933489031577A2E;
+2016-12-18 15:35:33,679 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:33,790 - receptor - INFO - Raw Message Received: *8DE485B0587380C7BB32F2C5889C;
+2016-12-18 15:35:33,885 - receptor - INFO - Raw Message Received: *8DE485B099106933489032A8923C;
+2016-12-18 15:35:34,201 - receptor - INFO - Raw Message Received: *8DE485B0587374D5A16A83716109;
+2016-12-18 15:35:34,201 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:34,201 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:34,324 - receptor - INFO - Raw Message Received: *8DE485B099106933489032A8923C;
+2016-12-18 15:35:35,141 - receptor - INFO - Raw Message Received: *8DE485B0587360C82D330180E59C;
+2016-12-18 15:35:35,238 - receptor - INFO - Raw Message Received: *8DE485B09910693328903198FE55;
+2016-12-18 15:35:36,080 - receptor - INFO - Raw Message Received: *8DE485B0587354D6336A954013F6;
+2016-12-18 15:35:36,081 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:36,081 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:36,176 - receptor - INFO - Raw Message Received: *8DE485B09910693328903198FE55;
+2016-12-18 15:35:36,908 - receptor - INFO - Raw Message Received: *8DE485B09910693328903198FE55;
+2016-12-18 15:35:37,679 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:37,968 - receptor - INFO - Raw Message Received: *8DE485B09910693328903198FE55;
+2016-12-18 15:35:38,899 - receptor - INFO - Raw Message Received: *8DE485B0587310C96B3328601A6E;
+2016-12-18 15:35:38,995 - receptor - INFO - Raw Message Received: *8DE485B099106933289030670A5C;
+2016-12-18 15:35:39,588 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:39,980 - receptor - INFO - Raw Message Received: *8DE485B05871F0C9BD33323D16CC;
+2016-12-18 15:35:40,092 - receptor - INFO - Raw Message Received: *8DE485B09910693328903198FE55;
+2016-12-18 15:35:40,912 - receptor - INFO - Raw Message Received: *8DE485B05871E0CA0D333C03D50C;
+2016-12-18 15:35:41,009 - receptor - INFO - Raw Message Received: *8DE485B099106933089030227675;
+2016-12-18 15:35:41,427 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:41,716 - receptor - INFO - Raw Message Received: *8DE485B099106933089031DD827C;
+2016-12-18 15:35:42,799 - receptor - INFO - Raw Message Received: *8DE485B05871B4D85D6ADAA53F34;
+2016-12-18 15:35:42,800 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:42,800 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:42,899 - receptor - INFO - Raw Message Received: *8DE485B099106833089030217CBB;
+2016-12-18 15:35:43,474 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:43,751 - receptor - INFO - Raw Message Received: *8DE485B099106833089031DE88B2;
+2016-12-18 15:35:44,818 - receptor - INFO - Raw Message Received: *8DE485B0587184D8FD6AEE5AABCE;
+2016-12-18 15:35:44,912 - receptor - INFO - Raw Message Received: *8DE485B099106833089030217CBB;
+2016-12-18 15:35:45,316 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:45,605 - receptor - INFO - Raw Message Received: *8DE485B0587174D9516AF86ECC49;
+2016-12-18 15:35:46,680 - receptor - INFO - Raw Message Received: *8DE485B0587160CBEF33786F2854;
+2016-12-18 15:35:46,680 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:46,680 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:46,839 - receptor - INFO - Raw Message Received: *8DE485B099106832E890302F013E;
+2016-12-18 15:35:47,089 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:47,618 - receptor - INFO - Raw Message Received: *8DE485B0587144D9DF6B0A9CD319;
+2016-12-18 15:35:47,712 - receptor - INFO - Raw Message Received: *8DE485B099106832E890302F013E;
+2016-12-18 15:35:48,691 - receptor - INFO - Raw Message Received: *8DE485B0587134DA336B140F550F;
+2016-12-18 15:35:48,799 - receptor - INFO - Raw Message Received: *8DE485B099106832E890302F013E;
+2016-12-18 15:35:49,409 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:49,763 - receptor - INFO - Raw Message Received: *8DE485B0587124DA836B1E4DA90C;
+2016-12-18 15:35:49,872 - receptor - INFO - Raw Message Received: *8DE485B099106832E890302F013E;
+2016-12-18 15:35:50,568 - receptor - INFO - Raw Message Received: *8DE485B0587104DAD36B287A49CB;
+2016-12-18 15:35:50,665 - receptor - INFO - Raw Message Received: *8DE485B099106832C890306A7D17;
+2016-12-18 15:35:51,508 - receptor - INFO - Raw Message Received: *8DE485B0586FF4DB236B3285C0F3;
+2016-12-18 15:35:51,604 - receptor - INFO - Raw Message Received: *8DE485B099106832C890306A7D17;
+2016-12-18 15:35:51,755 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:52,322 - receptor - INFO - Raw Message Received: *8DE485B0586FD0CDCB33B40F48EB;
+2016-12-18 15:35:52,323 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:52,324 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:53,631 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:54,516 - receptor - INFO - Raw Message Received: *8DE485B0586FB4DC176B5039B63C;
+2016-12-18 15:35:55,664 - receptor - INFO - Raw Message Received: *8DE485B0586F94DC696B5BF7EC67;
+2016-12-18 15:35:55,739 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:56,200 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:35:56,603 - receptor - INFO - Raw Message Received: *8DE485B0586F84DCB96B657B8D41;
+2016-12-18 15:35:56,696 - receptor - INFO - Raw Message Received: *8DE485B099106832A8902F5AB9FC;
+2016-12-18 15:35:57,654 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:35:58,480 - receptor - INFO - Raw Message Received: *8DE485B099106832A88C2FF23BFC;
+2016-12-18 15:35:59,672 - receptor - INFO - Raw Message Received: *8DE485B0586F40D00B33FB427770;
+2016-12-18 15:35:59,673 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:35:59,675 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:35:59,840 - receptor - INFO - Raw Message Received: *8DE485B099106832888C2E48B3DC;
+2016-12-18 15:35:59,952 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:00,629 - receptor - INFO - Raw Message Received: *8DE485B0586F24DDF96B8DC476F5;
+2016-12-18 15:36:00,728 - receptor - INFO - Raw Message Received: *8DE485B099106732888C2FA625CF;
+2016-12-18 15:36:01,699 - receptor - INFO - Raw Message Received: *8DE485B0586F10D0BF341225E575;
+2016-12-18 15:36:01,699 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:01,699 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:01,798 - receptor - INFO - Raw Message Received: *8DE485B099106732888C2FA625CF;
+2016-12-18 15:36:01,946 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:02,769 - receptor - INFO - Raw Message Received: *8DE485B0586DF4DEAD6BA3443DF3;
+2016-12-18 15:36:02,871 - receptor - INFO - Raw Message Received: *8DE485B099106732888C2FA625CF;
+2016-12-18 15:36:03,918 - receptor - INFO - Raw Message Received: *8DE485B0586DE4DEFB6BACF0749F;
+2016-12-18 15:36:04,061 - receptor - INFO - Raw Message Received: *8DE485B099106732888C2FA625CF;
+2016-12-18 15:36:04,151 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:04,914 - receptor - INFO - Raw Message Received: *8DE485B0586DC0D1C53432F52733;
+2016-12-18 15:36:04,915 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:04,915 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:05,014 - receptor - INFO - Raw Message Received: *8DE485B099106732688C2E7C5110;
+2016-12-18 15:36:11,750 - receptor - INFO - Raw Message Received: *8DE485B09910663248942EAA93F7;
+2016-12-18 15:36:13,761 - receptor - INFO - Raw Message Received: *8DE485B09910663248982EE2C9F7;
+2016-12-18 15:36:17,361 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:17,918 - receptor - INFO - Raw Message Received: *8DE485B0586B94E36D6C3A70183C;
+2016-12-18 15:36:25,022 - receptor - INFO - Raw Message Received: *8FE485B05869F4E59B6C7FA6D554;
+2016-12-18 15:36:25,116 - receptor - INFO - Raw Message Received: *8FE485B099106731E8942CCA18A3;
+2016-12-18 15:36:25,268 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:36:25,700 - receptor - INFO - Raw Message Received: *8FE485B099106731E8942CCA18A3;
+2016-12-18 15:36:26,228 - receptor - INFO - Raw Message Received: *8FE485B020501373CB6C207A5F08;
+2016-12-18 15:36:26,899 - receptor - INFO - Raw Message Received: *8FE485B05869C0D8BD351096E413;
+2016-12-18 15:36:26,900 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:26,900 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:26,995 - receptor - INFO - Raw Message Received: *8FE485B099106731E8902CF22EA3;
+2016-12-18 15:36:27,282 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:36:27,861 - receptor - INFO - Raw Message Received: *8FE485B05869B4E6796C9B233553;
+2016-12-18 15:36:27,955 - receptor - INFO - Raw Message Received: *8FE485B099106731E8902CF22EA3;
+2016-12-18 15:36:28,915 - receptor - INFO - Raw Message Received: *8FE485B0586990D95D35246B9FA8;
+2016-12-18 15:36:28,915 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:28,916 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:29,012 - receptor - INFO - Raw Message Received: *8FE485B099106731C8942B70B4AE;
+2016-12-18 15:36:29,160 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:36:29,988 - receptor - INFO - Raw Message Received: *8FE485B0586984E7256CB0A92BA0;
+2016-12-18 15:36:30,093 - receptor - INFO - Raw Message Received: *8FE485B099106731C8942C8F648A;
+2016-12-18 15:36:30,803 - receptor - INFO - Raw Message Received: *8FE485B0586960DA013538F0AA38;
+2016-12-18 15:36:30,804 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:30,804 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:30,898 - receptor - INFO - Raw Message Received: *8FE485B099106731C8942B70B4AE;
+2016-12-18 15:36:31,442 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:36:31,865 - receptor - INFO - Raw Message Received: *8FE485B0586954E7B76CC3F005EC;
+2016-12-18 15:36:31,981 - receptor - INFO - Raw Message Received: *8FE485B099106731C8902CB7528A;
+2016-12-18 15:36:32,536 - receptor - INFO - Raw Message Received: *8FE485B0586940DA8F354A3B12C8;
+2016-12-18 15:36:32,536 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:32,536 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:33,854 - receptor - INFO - Invalid Raw Message Received: *5FE485B0E8C06A;
+2016-12-18 15:36:33,956 - receptor - INFO - Raw Message Received: *8FE485B0586924E8576CD735F75C;
+2016-12-18 15:36:45,493 - receptor - INFO - Raw Message Received: *8DE485B09910663168902AABE61D;
+2016-12-18 15:36:46,221 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:46,544 - receptor - INFO - Raw Message Received: *8DE485B09910663168902A8BE61D;
+2016-12-18 15:36:47,743 - receptor - INFO - Raw Message Received: *8DE485B05865F0DF4535E24A4F89;
+2016-12-18 15:36:47,743 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:47,744 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:47,906 - receptor - INFO - Raw Message Received: *8DE485B09910663168902AABE61D;
+2016-12-18 15:36:48,505 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:48,770 - receptor - INFO - Raw Message Received: *8DE485B05865D0DF9335ECBA0361;
+2016-12-18 15:36:49,680 - receptor - INFO - Raw Message Received: *8DE485B05865C0DFE535F6B41AC3;
+2016-12-18 15:36:50,815 - receptor - INFO - Raw Message Received: *8DE485B05865A4ED916D7F42A1B1;
+2016-12-18 15:36:50,816 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:50,816 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:50,941 - receptor - INFO - Raw Message Received: *8DE485B09910663148942AD6AC34;
+2016-12-18 15:36:51,832 - receptor - INFO - Raw Message Received: *8DE485B0586594EDDB6D89E926AC;
+2016-12-18 15:36:51,932 - receptor - INFO - Raw Message Received: *8DE485B09910663148902AEE9A34;
+2016-12-18 15:36:52,609 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:52,901 - receptor - INFO - Raw Message Received: *8DE485B0586574EE2D6D9398E9FF;
+2016-12-18 15:36:53,864 - receptor - INFO - Raw Message Received: *8DE485B0586564EE7B6D9DD3549A;
+2016-12-18 15:36:53,975 - receptor - INFO - Raw Message Received: *8DE485B099106631289429E6C05D;
+2016-12-18 15:36:54,668 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:55,050 - receptor - INFO - Raw Message Received: *8DE485B0586540E17F362AFD4650;
+2016-12-18 15:36:55,051 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:36:55,052 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:36:55,202 - receptor - INFO - Raw Message Received: *8DE485B09910663128942A19284F;
+2016-12-18 15:36:55,708 - receptor - INFO - Raw Message Received: *8DE485B099106631289429E6C05D;
+2016-12-18 15:36:56,010 - receptor - INFO - Raw Message Received: *8DE485B020501373CB6C20CABDF8;
+2016-12-18 15:36:56,581 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:56,987 - receptor - INFO - Raw Message Received: *8DE485B0586514EF656DBBF5156A;
+2016-12-18 15:36:57,102 - receptor - INFO - Raw Message Received: *8DE485B099106631289429E6C05D;
+2016-12-18 15:36:57,622 - receptor - INFO - Raw Message Received: *8DE485B0991066310890299B8A74;
+2016-12-18 15:36:58,424 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:36:58,684 - receptor - INFO - Raw Message Received: *8DE485B0991066310890299B8A74;
+2016-12-18 15:36:59,715 - receptor - INFO - Raw Message Received: *8DE485B0991066310890299B8A74;
+2016-12-18 15:37:00,385 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:37:00,815 - receptor - INFO - Raw Message Received: *8DE485B05863C0E34F36658AFC99;
+2016-12-18 15:37:00,816 - receptor - INFO - Complete Message Received: MsgBuff: [ic=E485B0, di=1, do=1, de=1, dv=1]
+2016-12-18 15:37:00,816 - receptor - INFO - Processed Complete Message: MsgBuff: [ic=E485B0, di=1, do=0, de=0, dv=0]
+2016-12-18 15:37:00,911 - receptor - INFO - Raw Message Received: *8DE485B0991065310890299E9526;
+2016-12-18 15:37:01,717 - receptor - INFO - Raw Message Received: *8DE485B0991065310890299E9526;
+2016-12-18 15:37:02,397 - receptor - INFO - Invalid Raw Message Received: *5DE485B0BF3ACC;
+2016-12-18 15:39:56,435 - receptor - INFO - Stopping receptor...
+2016-12-18 15:39:56,624 - receptor - INFO - Uploader stoped!
+2016-12-18 15:39:59,437 - receptor - INFO - Receptor close: closed!
