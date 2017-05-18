@@ -1,13 +1,17 @@
-SERVER_HOST = "localhost:8000"
+# Defines where the server is located
+SERVER_HOST = "127.0.0.1:8000"
 
-LOGIN = "joao"
-PASSWORD = "marianna123"
+#Change this to match the superuser you created
+LOGIN = "username"
+PASSWORD = "password123"
+
+#Change this to match the collector you created
 COLLECTOR_ID = "29384c61-c588-488f-9390-52251d6491ed"
 
-# Define a location to local database
+# Define a path to local database
 DATABASE_DIR = "data"
 
-# Define a location to log files
+# Define a path to log files
 LOG_DIR = "log"
 
 # Override with the collector adress, normaly located in /dev/ttyACM...
