@@ -10,23 +10,30 @@ The RadarLivre system is a mixed software-hardware solution based in the ASD-B t
 
 ## Getting Started
 
-This paper will help you get a copy of the project(client-side) to run it in your local machine. If you are looking for the server-side, [this is the repository](https://github.com/FelipePinhoUFC/RadarLivre). You need both to get the system running.
+This paper will help you get a copy of the project(client-side) to run it with your ADS-B receptor. If you are looking for the server-side, [this is the repository](https://github.com/RadarLivre/RadarLivreCollector).
+You need both to get the system running, so it is recomended that, if you plan on running in your local machine, install the server first.
 
 ### Prerequisites
 
 This project was designed to run in ubuntu.
 You need to have these installed before installing the project.
+The other dependencies are covered when installing.
 
 ```
 * Python 2.7
-* SQLite database
 ```
 
 ### Installing
 
-Follow these steps to install and run the collector.
+Follow these steps to install, configure and run the server.
 
-* Open the terminal and install Git (if you have done this already, you may skip this step).
+```
+HINT: The following commands in these boxes should be used in your terminal.
+```
+
+* Open the terminal by typing CTRL+ALT+T.
+
+* Install Git
 
 ```
 sudo apt-get install git
@@ -35,21 +42,22 @@ sudo apt-get install git
 * Clone this repository from github where you want to have your copy installed.
 
 ```
-git clone http://github.com/FelipePinhoUFC/RadarLivreCollector.git
+git clone http://github.com/RadarLivre/RadarLivreCollector.git
 ```
 
-* From now on, you need to have a running server to send the data. If you have not installed it yet, you need to do it now.
+* From now on, you need to have a running server to send the data. If you have not installed it yet and are planning on running it locally, you need to do it now.
 Now we have to create a superuser to manage collectors inside the server.
-For this, activate your virtual enviroment where you installed your server by using.
+
+* Enter the RadarLivre server directory
 
 ```
-source venv/bin/activate
+cd RadarLivre
 ```
 
-* Create a super user. You will be asked to provide a username, email and password. For security reasons, your password need to be strong.
+* Create a new by superuser by running create_superuser.sh. You will be asked to provide a username, email and password. For security reasons, your password need to be strong.
 
 ```
-python manage.py createsuperuser
+sudo ./create_superuser.sh
 ```
 
 * Now, you need to add a collector. For this, you need to run the server.
@@ -98,8 +106,8 @@ sudo apt-get install python-serial
 sudo ./start_receptor
 ```
 
-Congratulations! Now that you you can access your server by going to [http://127.0.0.1:8000](http://127.0.0.1:8000) in your web browser. If you did it right and the collector is feeding the server, you should see the airplanes close to your receptor.
-Don't worry if it doesn't display anything as you just started feeding. The airplanes will appear as they come close to your receptor's range. Remember that not every airplane have an ASD-B transceiver that you need.
+Congratulations! Now that you you can access your server by going to [http://127.0.0.1:8000](http://127.0.0.1:8000) in your web browser. If you did it right and the collector is feeding the server, you should see the aircrafts that get close to your receptor.
+Don't worry if it doesn't show anything, as you just started feeding. The aircrafts will appear as they come close to your receptor's range. Remember that not every airplane have an ASD-B transceiver that you need to get data.
 
 <!--
 ## Running the tests
@@ -125,21 +133,17 @@ Give an example
 
 ## Deployment
 
-Once you have set up your server, you can aways access it by following these steps:
+Once you have set up your collector, you can starting sending data by following these steps:
 
-Activate the virtual enviroment
+* Run the server (described at the server's README Deployment section).
 
-```
-source venv/bin/activate
-```
-
-With the virtual enviroment activated, run the server
+* Start the receptor.
 
 ```
-python manage.py runserver
+sudo ./start_receptor
 ```
 
-Access it by going to [http://127.0.0.1:8000](http://127.0.0.1:8000) in your web browser.
+Then, your server is going to show any ADS-B transceiver equipped aircraft that gets within range.
 
 <!--
 ## Built With
