@@ -23,3 +23,17 @@ echo "************************************************************"
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
+
+echo "************************************************************"
+echo "| Installing Dependencies                                  |"
+echo "************************************************************"
+
+echo "----- Installing Python Requests -----"
+sudo apt-get install python-requests
+
+echo "----- Installing Python Serial -----"
+sudo apt-get install python-serial
+
+echo "************************************************************"
+echo "| Finished. Now you need to configure your collector.      |"
+echo "************************************************************"

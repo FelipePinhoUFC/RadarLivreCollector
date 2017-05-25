@@ -45,62 +45,30 @@ sudo apt-get install git
 git clone http://github.com/RadarLivre/RadarLivreCollector.git
 ```
 
+* Enter the RadarLivre collector directory
+
+```
+cd RadarLivreCollector
+```
+
+* Run INSTALL.sh to install the dependencies.
+
+```
+sudo ./INSTALL.sh
+```
+
 * From now on, you need to have a running server to send the data. If you have not installed it yet and are planning on running it locally, you need to do it now.
-Now we have to create a superuser to manage collectors inside the server.
+Now we have to create a superuser to manage collectors inside the server. Read the "Create Superuser" section of your server's [README](https://github.com/RadarLivre/RadarLivre/blob/master/README.md).
 
-* Enter the RadarLivre server directory
+* Now, you need to add a collector. Read the "Insert new Collector" section of your server's [README](https://github.com/RadarLivre/RadarLivre/blob/master/README.md).
 
-```
-cd RadarLivre
-```
-
-* Create a new by superuser by running create_superuser.sh. You will be asked to provide a username, email and password. For security reasons, your password need to be strong.
+* Run CONFIGURE.sh and follow the instructions to configure your collector.
 
 ```
-sudo ./create_superuser.sh
+sudo ./CONFIGURE.sh
 ```
 
-* Now, you need to add a collector. For this, you need to run the server.
-
-```
-python manage.py runserver
-```
-
-<!--information about timestamp and timestampData needed-->
-* And  access the admin page located at [127.0.0.1:8000/admin](127.0.0.1:8000/admin)(if running a local server) by providing the user you just created. There, click +add in Collectors and provide the information needed. Make sure to link the receptor to the correct user.
-
-* Copy the generated key and change it in "config.py". It should look like:
-
-```
-COLLECTOR_ID = “29384c61-c588-488f-9390-52251d6491ed”
-```
-
-* If you are not using a local server, you need to change the server host in "config.py" located in the collector folder. Else, skip this step.
-
-```
-SERVER_HOST = “http:\\path\to\your\server:port”
-```
-
-* Now, change login and password with your created user. It should look like:
-
-```
-LOGIN = "username"
-PASSWORD = "123password"
-```
-
-* Install the library used to send data to the server.
-
-```
-sudo apt-get install python-requests
-```
-
-* Install the library used to read from serial port(USB port).
-
-```
-sudo apt-get install python-serial
-```
-
-* Now we are ready to start sending data. Start the receptor.
+* With the collector configured, we are ready to start sending data. Start the receptor.
 
 ```
 sudo ./start_receptor
@@ -137,6 +105,14 @@ Once you have set up your collector, you can starting sending data by following 
 
 * Run the server (described at the server's README Deployment section).
 
+* Open the terminal by typing CTRL+ALT+T.
+
+* Enter the RadarLivre collector directory
+
+```
+cd RadarLivreCollector
+```
+
 * Start the receptor.
 
 ```
@@ -144,6 +120,8 @@ sudo ./start_receptor
 ```
 
 Then, your server is going to show any ADS-B transceiver equipped aircraft that gets within range.
+
+* You can stop sending data to the server by pressing CTRL+C(in the terminal).
 
 <!--
 ## Built With
